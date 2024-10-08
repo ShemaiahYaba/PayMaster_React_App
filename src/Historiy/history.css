@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    font-family: 'Poppins';
+    background-color: rgb(0, 0, 0);
+    color: white;
+  }
+  
+  .App {
+    padding: 20px;
+  }
+  
+  .header1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+    background: black;
+    color: white;
+}
+  
+  .filter-icon img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .transaction-list {
+    /* margin-bottom: 80px; Leave space for navbar */
+  }
+  .btag{
+    text-decoration: none;
+    color: white;
+  }
+  .transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+   
+  }
+  
+  .transaction-icon img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .transaction-details {
+    flex: 1;
+    padding-left: 10px;
+  }
+  
+  .transaction-title {
+    font-weight: bold;
+  }
+  
+  .transaction-date {
+    color: #888;
+  }
+  
+  .transaction-amount {
+    font-size: 16px;
+  }
+  
+  .transaction-amount.positive {
+    color: green;
+  }
+  
+  .transaction-amount.negative {
+    color: red;
+  }
+  
+  .navbar {
+    position: fixed;
+    bottom: 0;
+    width: 90%;
+    display: flex;
+    background: none;
+    justify-content: space-between;
+
+    padding: 2%;
+    /* padding: 10px 0; */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-item {
+    font-size: 14px;
+    text-align: center;
+    color: white;
+  }
+  h2{
+    font-size: 15px;
+    background-color: gray;
+    padding: 3px;
+    border-radius: 10px;
+
+  }
+  @media (max-width: 768px) {
+    .transaction-item {
+      font-size: 14px;
+    }
+    
+    .transaction-amount {
+      font-size: 14px;
+    }
+    .navbar {
+        position: fixed;
+        bottom: 0;
+        width: 97%;
+        display: flex;
+        background: none;
+        justify-content: space-evenly;
+    
+        padding: 2%;
+        /* padding: 10px 0; */
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      }
+  }
+  
+  @media (max-width: 480px) {
+    .transaction-item {
+      font-size: 12px;
+    }
+    
+    .transaction-amount {
+      font-size: 12px;
+    }
+  }
+  

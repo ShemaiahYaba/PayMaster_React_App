@@ -1,6 +1,6 @@
 
-import pic1 from './assets/LOGO.jpg'
-import pic2 from './assets/plane.jpg'
+import pic1 from '../assets/LOGO.jpg'
+
 import React, { useState, useEffect } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 
@@ -72,14 +72,15 @@ const Welcome= () => {
 
 
 const styles = {
+
   container: {
    
     textAlign: 'center',
     
-    
+    fontFamily: 'Poppins',
     width: '99%',
     // backgroundColor:'red',
-    height: '95vh',
+    height: '40vh',
    
   },
   slide: {
@@ -95,19 +96,19 @@ const styles = {
     marginTop:'3%',
   },
   mainText: {
-    fontSize: '3em',
+    fontSize: '2em',
     fontWeight: 'bold',
     margin: '20px 0',
   },
   subText: {
-    fontSize: '20px',
+    fontSize: '15px',
     color: 'gray',
   },
   footer: {
     maxWidth:'100%',
     width:'75%',
     position: 'absolute',
-    bottom:'5%',
+    bottom:'0',
     marginLeft:'3%',
   
   },
