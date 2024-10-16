@@ -1,76 +1,69 @@
-
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .container {
-    text-align: center;
-    margin-top: 50px;
-    height: 100vh;
- 
-   
-  }
-  .container1{
-    height: 10vh;
-  }
-  .body{
-    
-  }
-  
-  .code-inputs {
-    display: flex;
-    justify-content: space-between;
-    gap: 1.5%;
-    margin-bottom: 20px;
-  }
-  .ab{
+  text-align: center;
+  margin-top: 50px;
+  height: 100vh;
+}
+.container1 {
+  height: 10vh;
+}
 
-  }
-  .underline{
-    text-decoration: underline;
-    color: #6200ea;
-  }
-  
-  .code-input {
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
-    text-align: center;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-  }
-  
-  .code-input:disabled {
-    background-color: #f1f1f1;
-  }
-  
-  .timer {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  
-  .verify-button {
-   width: 85%;
-   padding: 5%;
-   margin-left: 5%;
-    background-color: #000000;
-    color: white;
-    border: none;
-    
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .verify-button:disabled {
-    background-color: grey;
-    cursor: not-allowed;
-  }
-  .Resend-code{
-    color: black 10px;
-    text-decoration: underline;
-  }
-  .hd1{
-    display: flex;
-    justify-content: space-between;
-    width: 60%;
-  }
+.code-inputs {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5%;
+  margin-bottom: 20px;
+}
+.underline {
+  text-decoration: underline;
+  color: #6200ea;
+}
+
+.code-input {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+}
+
+.code-input:disabled {
+  background-color: #f1f1f1;
+}
+
+.timer {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.verify-button {
+  width: 85%;
+  padding: 5%;
+  margin-left: 5%;
+  background-color: #000000;
+  color: white;
+  border: none;
+
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.verify-button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+.Resend-code {
+  color: black 10px;
+  text-decoration: underline;
+  text-align: left;
+  font-size: larger;
+}
+.hd1 {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
