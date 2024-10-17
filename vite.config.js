@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   build: {
+    outDir: "dist", // Default output directory for Vite
     rollupOptions: {
       external: ["axios"],
     },
