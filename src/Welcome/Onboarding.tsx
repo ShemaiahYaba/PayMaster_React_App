@@ -59,7 +59,7 @@ function Onboarding() {
               size="lg"
               color="secondary"
               style={{
-                backgroundColor: "#EEE5FF",
+                backgroundColor: "#e3e2e7",
                 color: "black",
                 padding: "15px 140px", // Adjusted padding for a balanced look
                 fontSize: "18px", // Adjusted font size for better fit
