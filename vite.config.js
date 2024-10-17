@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     outDir: "dist", // Default output directory for Vite
     rollupOptions: {
-      external: ["axios"],
+      external: [], // Remove axios from here; we don't want to exclude it from the bundle
     },
   },
 });
