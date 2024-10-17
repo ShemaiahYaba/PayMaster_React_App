@@ -1,21 +1,21 @@
 .headerStart {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    /* background-color: #8a00ff; */
-    color: white;
-  }
-  .header h1 {
-    margin: 0;
-    font-size: 1.2rem;
-  }
-  .btnS{
-    background-color: white;
-    color: black;
-    width: 80%;
-    margin-left: 10%;
-    border-radius: 20px;
-    padding: 2%;
-    position: absolute;
-    bottom: 10%;
-  }
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  /* background-color: #8a00ff; */
+  color: white;
+}
+.header h1 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.btnS {
+  background-color: white;
+  color: black;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 20px;
+  padding: 2%;
+  position: absolute;
+  bottom: 10%;
+}

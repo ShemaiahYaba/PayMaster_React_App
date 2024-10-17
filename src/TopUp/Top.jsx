@@ -1,17 +1,16 @@
-
-import React, { useState } from 'react';
+import { useState } from "react";
 
 const Top = () => {
-  const [fullName, setFullName] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvv, setCvv] = useState('');
-  const [amount, setAmount] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [amount, setAmount] = useState("");
 
   // Handle the number input with Naira symbol
   const handleAmountChange = (e) => {
-    const value = e.target.value.replace(/[^\d]/g, ''); // Only keep digits
-    setAmount(value ? `₦${value}` : '');
+    const value = e.target.value.replace(/[^\d]/g, ""); // Only keep digits
+    setAmount(value ? `₦${value}` : "");
   };
 
   return (
@@ -29,7 +28,7 @@ const Top = () => {
 
       <div style={styles.formContainer}>
         <div style={styles.inputGroup}>
-          <label style= {styles.label} >Full Name</label>
+          <label style={styles.label}>Full Name</label>
           <input
             type="text"
             value={fullName}
@@ -40,7 +39,7 @@ const Top = () => {
         </div>
 
         <div style={styles.inputGroup}>
-          <label style= {styles.label} >Credit Card Number</label>
+          <label style={styles.label}>Credit Card Number</label>
           <input
             type="text"
             value={cardNumber}
@@ -53,7 +52,7 @@ const Top = () => {
 
         <div style={styles.row}>
           <div style={styles.inputGroupHalf}>
-            <label style= {styles.label} >Exp Date</label>
+            <label style={styles.label}>Exp Date</label>
             <input
               type="text"
               value={expiryDate}
@@ -65,7 +64,7 @@ const Top = () => {
           </div>
 
           <div style={styles.inputGroupHalf}>
-            <label style= {styles.label} >CVV</label>
+            <label style={styles.label}>CVV</label>
             <input
               type="text"
               value={cvv}
@@ -85,70 +84,70 @@ const Top = () => {
 
 const styles = {
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '20px',
-    backgroundColor: '#000',
-    minHeight: '100vh',
-    color: '#fff',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "20px",
+    backgroundColor: "#000",
+    minHeight: "100vh",
+    color: "#fff",
   },
   amountHeader: {
-    fontSize: '24px',
-    marginBottom: '10px',
+    fontSize: "24px",
+    marginBottom: "10px",
   },
   amountInput: {
-    fontSize: '48px',
-    marginBottom: '30px',
-  }, 
-   label: {
-    color:'Black',
+    fontSize: "48px",
+    marginBottom: "30px",
+  },
+  label: {
+    color: "Black",
   },
   inputAmount: {
-    fontSize: '48px',
-    textAlign: 'center',
-    color: '#fff',
-    backgroundColor: 'transparent',
-    border: 'none',
-    borderBottom: '2px solid #fff',
-    width: '100%',
-    maxWidth: '300px',
+    fontSize: "48px",
+    textAlign: "center",
+    color: "#fff",
+    backgroundColor: "transparent",
+    border: "none",
+    borderBottom: "2px solid #fff",
+    width: "100%",
+    maxWidth: "300px",
   },
   formContainer: {
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '10px',
-    boxShadow: '0px 4px 10px rgba(0,0,0,0.1)',
-    width: '100%',
-    maxWidth: '400px',
+    backgroundColor: "#fff",
+    padding: "20px",
+    borderRadius: "16px",
+    boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
+    width: "100%",
+    maxWidth: "400px",
   },
   inputGroup: {
-    marginBottom: '20px',
+    marginBottom: "20px",
   },
   row: {
-    display: 'flex',
-    justifyContent: 'space-between',
+    display: "flex",
+    justifyContent: "space-between",
   },
   inputGroupHalf: {
-    width: '48%',
+    width: "48%",
   },
   inputField: {
-    width: '100%',
-    padding: '10px',
-    borderRadius: '5px',
-    border: '1px solid #ddd',
-    marginTop: '5px',
+    width: "100%",
+    padding: "10px",
+    borderRadius: "13px",
+    border: "1px solid #ddd",
+    marginTop: "5px",
   },
   continueButton: {
-    width: '100%',
-    padding: '15px',
-    backgroundColor: '#000',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    fontSize: '16px',
-    cursor: 'pointer',
+    width: "100%",
+    padding: "15px",
+    backgroundColor: "#000",
+    color: "#fff",
+    border: "none",
+    borderRadius: "18px",
+    fontSize: "16px",
+    cursor: "pointer",
   },
 };
 

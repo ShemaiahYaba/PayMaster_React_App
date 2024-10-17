@@ -1,31 +1,49 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import pic2 from "../assets/plane.jpg";
 import "./transfer.css";
+import { FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Transfer() {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate("/home");
+  };
+
   //   const [amount, setAmount] = useState("100,000");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [description, setDescription] = useState("");
 
   return (
-    <div className="transfer-screen">
+    <div className="transfer-screen min-h-screen">
       {/* Header Section */}
-      <div className="header1">
-        <button className="back-btn">
-          <img src="back-arrow-icon.png" alt="Back" />
+      <div className="header">
+        <button
+          onClick={handleGoBack}
+          className="back-button absolute top-4 left-4 text-black"
+        >
+          <FaArrowLeft size={20} />
         </button>
-        <h2>Transfer</h2>
+
+        <div className="header-title">
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+            <h2 className="font-bold tracking-tight back-button absolute top-3 left-20 right-20 text-black">
+              Transfer
+            </h2>
+          </div>
+        </div>
       </div>
 
       <div className="center">
         {/* Amount Section */}
         <div className="amount-section">
           <p>How much?</p>
-          <div className="amount">
+          <div className="amount justify-center">
             <g> ₦ </g>
             <g>
-              <input type="text" className="am" />
+              <input type="text" className="am font-semibold text-2xl" />
             </g>
             {/* {amount} */}
           </div>
@@ -56,19 +74,16 @@ function Transfer() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-            
-            <button className="add-attachment-btn">
-            <input type="file" name="" id=""/>
+
+          <button className="add-attachment-btn">
+            <input type="file" name="" id="" />
             {/* <img src="attachment-icon.png" alt="Add Attachment" /> */}
             Add attachment
           </button>
-            
-          
-           {/* Continue Button */}
-        <button className="continue-btn">Continue</button>
-        </div>
 
-       
+          {/* Continue Button */}
+          <button className="continue-btn">Continue</button>
+        </div>
       </div>
     </div>
   );

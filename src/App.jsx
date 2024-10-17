@@ -1,10 +1,10 @@
 // import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Onboarding from "./Welcome/Onboarding.tsx";
 import SignUp from "./SignUp/SignUp.tsx";
 import LogIn from "./LogIn/LogIn.tsx";
 import ForgotPassword from "./LogIn/ForgotPassword.tsx";
 import Verification from "./Verification/Verification.jsx";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Pin from "./Pin/Pin.jsx";
 import Retype from "./Pin/Retype.jsx";
 import SetupAccount from "./Setup/SetupAccount.jsx";
@@ -12,12 +12,12 @@ import Start from "./Begin/Start.jsx";
 import Account from "./Account/Account.jsx";
 import Home from "./Hom/Home.jsx";
 import History from "./Historiy/History.jsx";
-import Transfer from "./Transfer/Transfer.jsx";
 import Top from "./TopUp/Top.jsx";
 import TopUp from "./TopUp/TopUp.jsx";
 import Profile from "./Profile/Profile.jsx";
 import ForgotPasswordEmailSent from "./LogIn/ForgotPasswordEmailSent.tsx";
 import SignUpSuccess from "./SignUp/SignUpSuccess.tsx";
+import TransferNew from "./Transfer/TransferNew.tsx";
 
 function App() {
   return (
@@ -42,7 +42,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/home" element={<Home />} />
           <Route path="/history" element={<History />} />
-          <Route path="/transfer" element={<Transfer />} />
+          <Route path="/transfer" element={<TransferNew />} />
           <Route path="/Top" element={<Top />} />
           <Route path="/Topup" element={<TopUp />} />
           <Route path="/profile" element={<Profile />} />

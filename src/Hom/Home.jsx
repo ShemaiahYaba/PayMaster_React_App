@@ -1,7 +1,12 @@
 // src/App.jsx
 
 import "./home.css";
-
+import { IoIosNotifications } from "react-icons/io";
+import { BiQrScan } from "react-icons/bi";
+import { BiTransfer } from "react-icons/bi";
+import { PiHandDeposit } from "react-icons/pi";
+import { MdSendToMobile } from "react-icons/md";
+import { MdCallMissedOutgoing } from "react-icons/md";
 const Home = () => {
   // Sample transactions
   const transactions = [
@@ -45,58 +50,83 @@ const Home = () => {
   return (
     <div className="app">
       {/* Profile Header */}
-      <div className="profile-header">
-        <div className="profile">
+      <div className="flex items-center justify-between p-3">
+        <div className="profile space-x-1">
           <img
             src="https://randomuser.me/api/portraits/men/41.jpg"
             alt="profile"
             className="profile-img"
           />
-          <div>
-            <p className="profile-name">Wasiru</p>
-            <p className="profile-account">Account</p>
+          <div className="-mb-4 items-center">
+            <p className="font-bold leading-none">
+              Wasiru <br /> <p className="font-normal">Account</p>
+            </p>
           </div>
         </div>
 
         <div>
-          <h2 className="h2Home">Ajo</h2>
+          <h2 className="h2Home bg-transparent">Ajo</h2>
         </div>
 
         <div className="notification-bell">
-          <i className="fas fa-bell">bell</i>
+          <IoIosNotifications size={30} />
         </div>
       </div>
 
       {/* Account Card */}
-      <div className="account-card">
+      <div className="account-card rounded-2xl">
         <div className="account-info">
           <p>0987-6543-2810-7821</p>
           <h2>₦ 1,500,000.00 NGN</h2>
           <p className="account-type">Smart Account</p>
         </div>
         <div className="qr-code">
-          <i className="fas fa-qrcode"></i>
+          <BiQrScan className="bg-white text-black rounded-md" size={40} />
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="action-buttons">
+      <div className="action-buttons -mt-2">
         <a href="transfer" className="btag">
           {" "}
-          <button>Transfer</button>{" "}
+          <button className="rounded-2xl py-4 -mb-2 hover:bg-black hover:text-white ease-in duration-200">
+            <BiTransfer
+              className="mx-auto mb-0 -mt-2 hover:text-white"
+              size={30}
+            />
+            Transfer
+          </button>{" "}
         </a>
 
         <a href="Topup" className="btag">
           {" "}
-          <button>Topup</button>{" "}
+          <button className="rounded-2xl py-4 -mb-2 hover:bg-black hover:text-white ease-in duration-200">
+            <PiHandDeposit
+              className="mx-auto mb-0 -mt-2 hover:text-white"
+              size={30}
+            />
+            Topup
+          </button>{" "}
         </a>
         <a href="" className="btag">
           {" "}
-          <button>Pay Ajo</button>{" "}
+          <button className="rounded-2xl py-4 -mb-2 hover:bg-black hover:text-white ease-in duration-200">
+            <MdSendToMobile
+              className="mx-auto mb-0 -mt-2 hover:text-white"
+              size={30}
+            />
+            Pay Ajo
+          </button>{" "}
         </a>
         <a href="" className="btag">
           {" "}
-          <button>Request</button>{" "}
+          <button className="rounded-2xl py-4 -mb-2 hover:bg-black hover:text-white ease-in duration-200">
+            <MdCallMissedOutgoing
+              className="mx-auto mb-0 -mt-2 hover:text-white"
+              size={30}
+            />
+            Request
+          </button>{" "}
         </a>
       </div>
 
@@ -112,13 +142,13 @@ const Home = () => {
       </div>
 
       {transactions.map((transaction) => (
-        <div key={transaction.id} className="transaction-item">
+        <div key={transaction.id} className="transaction-item py-2">
           {" "}
           <br /> <br />
-          <p className="atag">
+          <p className="atag px-4 font-semibold">
             {transaction.date} | <br /> {transaction.type} <br /> <br />
           </p>
-          <div className="ptag">
+          <div className="ptag px-4 font-semibold">
             <p className={transaction.positive ? "positive" : "negative"}>
               {transaction.amount} NGN
             </p>

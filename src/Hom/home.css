@@ -1,181 +1,172 @@
 /* Global Styles */
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
 }
 .app {
-    /* background-color: white; */
-    height: 100vh;
-    width: 100%;
-    font-family: 'Poppins';
-    /* padding-bottom: 80px; Space for bottom navigation */
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  /* Profile Header */
-  .profile-header {
-    display: flex;
-    font-family: 'Poppins';
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-  }
-  
-  .profile {
-    display: flex;
-    align-items: center;
-    font-family: 'Poppins';
-  }
-  
-  .profile-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 1rem;
-    font-family: 'Poppins';
-  }
-  
-  .profile-name {
-    font-weight: bold;
-    font-family: 'Poppins';
-    font-size: 1.2rem;
-  }
-  
-  .profile-account {
-    color: gray;
-    font-family: 'Poppins';
-  }
-  
-  .notification-bell i {
-    font-size: 1.5rem;
-  }
-  
-  /* Account Card */
-  .account-card {
-    font-family: 'Poppins';
-    background-color: #000000;
-    border-radius: 12px;
-    padding: 1.5rem;
-    display: flex;
-    box-shadow: 8px 8px 15px grey;
-    color: white;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1rem;
-  }
-  .h2Home{
-    background-color: black;
-    font-size: 40px;
-  }
-  .account-info {
-    font-size: 1rem;
-    font-family: 'Poppins';
-  }
-  
-  .account-info h2 {
-    margin: 0.5rem 0;
-    font-size: 1.5rem;
-    font-family: 'Poppins';
-    font-weight: bold;
-    background: none;
-  }
-  
-  .account-type {
-    font-size: 0.9rem;
-    color: gray;
-  }
-  
-  .qr-code i {
-    font-size: 2rem;
-    font-family: 'Poppins';
-  }
-  
-  /* Action Buttons */
-  .action-buttons {
-    display: flex;
-    justify-content: space-between;
-    
-    /* justify-content: space-around;
+  /* background-color: white; */
+  height: 100vh;
+  width: 100%;
+  font-family: "Poppins";
+  /* padding-bottom: 80px; Space for bottom navigation */
+  font-family: "Poppins", sans-serif;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  font-family: "Poppins";
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  font-family: "Poppins";
+  width: auto;
+  padding: 2% 4%;
+  background-color: black;
+  border: none;
+  border-radius: 25px;
+  color: white;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  font-family: "Poppins";
+}
+
+.notification-bell i {
+  font-size: 1.5rem;
+}
+
+/* Account Card */
+.account-card {
+  font-family: "Poppins";
+  background-color: #000000;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  box-shadow: 8px 8px 15px #e6eef7;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+.h2Home {
+  background-color: black;
+  font-size: 40px;
+}
+.account-info {
+  font-size: 1rem;
+  font-family: "Poppins";
+}
+
+.account-info h2 {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  font-family: "Poppins";
+  font-weight: bold;
+  background: none;
+}
+
+.account-type {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.qr-code i {
+  font-size: 2rem;
+  font-family: "Poppins";
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+
+  /* justify-content: space-around;
    width: 96%;
     margin: 1rem; */
-  }
-  
-  .action-buttons button {
-    background: black;
-    color: white;
-    border: none;
-    padding: 1rem;
-    font-family: 'Poppins';
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: pointer;
+}
 
-  }
-  
-  /* Transaction History */
-  .transaction-history {
-    margin: 1rem;
-    font-family: 'Poppins';
-  }
-  
-  .history-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .transaction-item{
-   
-    
-  }
-  
-  .transaction-item p {
-    margin: 0;
-    font-family: 'Poppins';
-  }
-  
-  .positive {
-    color: green;
-    font-family: 'Poppins';
-  }
-  
-  .negative {
-    color: red;
-  }
-  .ptag{
-    position: absolute;
-    right: 0;
-  }
-  .atag{
-    position: absolute;
-    left: 0;
-  }
-  
-  /* Bottom Navigation */
-  .bottom-navigation {
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem;
-    background-color: #f3f4f6;
-    position: fixed;
-    bottom: 0;
-    font-family: 'Poppins';
-    width: 100%;
-  }
-  
-  .bottom-navigation button {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    font-family: 'Poppins';
-    cursor: pointer;
-  }
-  .see-all{
-    border: none;
-    color: white;
-    font-family: 'Poppins';
-  background-color: black;
-    font-size:20px;
-  }
+.action-buttons button {
+  background: #e6eef7;
+  color: black;
+  font-weight: bolder;
+  border: none;
+  padding: 1rem;
+  font-family: "Poppins";
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Transaction History */
+.transaction-history {
+  margin: 1rem;
+  font-family: "Poppins";
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transaction-item p {
+  margin: 0;
+  font-family: "Poppins";
+}
+
+.positive {
+  color: green;
+  font-family: "Poppins";
+}
+
+.negative {
+  color: red;
+}
+.ptag {
+  position: absolute;
+  right: 0;
+}
+.atag {
+  position: absolute;
+  left: 0;
+}
+
+/* Bottom Navigation */
+.bottom-navigation {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: #f3f4f6;
+  position: fixed;
+  bottom: 0;
+  font-family: "Poppins";
+  width: 100%;
+}
+
+.bottom-navigation button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-family: "Poppins";
+  cursor: pointer;
+}
+.see-all {
+  border: none;
+  background-color: transparent;
+  font-family: "Poppins";
+  color: black;
+  font-size: 20px;
+}
