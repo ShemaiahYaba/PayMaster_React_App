@@ -9,9 +9,8 @@
   /* background-color: white; */
   height: 100vh;
   width: 100%;
-  font-family: "Poppins";
+
   /* padding-bottom: 80px; Space for bottom navigation */
-  font-family: "Poppins", sans-serif;
 }
 
 /* Profile Header */
@@ -26,13 +25,12 @@
 .profile {
   display: flex;
   align-items: center;
-  font-family: "Poppins";
-  width: auto;
-  padding: 2% 4%;
-  background-color: black;
-  border: none;
-  border-radius: 25px;
-  color: white;
+  padding: 2% 2%;
+  background-color: #f7f7f9;
+  border: 1px solid #e6eef7;
+  border-radius: 35px;
+  color: #1a1c1e;
+  box-shadow: #e6eef7 5px 5px 15px;
 }
 
 .profile-img {
@@ -43,26 +41,18 @@
   font-family: "Poppins";
 }
 
-.notification-bell i {
-  font-size: 1.5rem;
-}
-
 /* Account Card */
 .account-card {
   font-family: "Poppins";
-  background-color: #000000;
+  background-color: #1a1c1e;
   border-radius: 12px;
   padding: 1.5rem;
   display: flex;
-  box-shadow: 8px 8px 15px #e6eef7;
+  box-shadow: 8px 8px 18px #e6eef7;
   color: white;
   justify-content: space-between;
   align-items: center;
   margin: 1rem;
-}
-.h2Home {
-  background-color: black;
-  font-size: 40px;
 }
 .account-info {
   font-size: 1rem;
@@ -76,12 +66,6 @@
   font-weight: bold;
   background: none;
 }
-
-.account-type {
-  font-size: 0.9rem;
-  color: gray;
-}
-
 .qr-code i {
   font-size: 2rem;
   font-family: "Poppins";
@@ -91,7 +75,6 @@
 .action-buttons {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
 
   /* justify-content: space-around;
    width: 96%;
@@ -100,22 +83,16 @@
 
 .action-buttons button {
   background: #e6eef7;
-  color: black;
+  color: #1a1c1e;
   font-weight: bolder;
   border: none;
-  padding: 1rem;
+  padding: 1.2rem;
   font-family: "Poppins";
   border-radius: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
+  font-size: 0.6rem;
 }
 
 /* Transaction History */
-.transaction-history {
-  margin: 1rem;
-  font-family: "Poppins";
-}
-
 .history-header {
   display: flex;
   justify-content: space-between;
@@ -124,7 +101,6 @@
 
 .transaction-item p {
   margin: 0;
-  font-family: "Poppins";
 }
 
 .positive {
@@ -148,11 +124,10 @@
 .bottom-navigation {
   display: flex;
   justify-content: space-around;
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: #f3f4f6;
   position: fixed;
   bottom: 0;
-  font-family: "Poppins";
   width: 100%;
 }
 

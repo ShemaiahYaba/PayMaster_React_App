@@ -1,12 +1,18 @@
 // src/App.jsx
 
 import "./home.css";
-import { IoIosNotifications } from "react-icons/io";
+import { IoIosNotificationsOutline } from "react-icons/io";
 import { BiQrScan } from "react-icons/bi";
-import { BiTransfer } from "react-icons/bi";
-import { PiHandDeposit } from "react-icons/pi";
-import { MdSendToMobile } from "react-icons/md";
-import { MdCallMissedOutgoing } from "react-icons/md";
+import Img07 from "../assets/withdraw.png";
+import Img04 from "../assets/topup.png";
+import Img05 from "../assets/transfer.png";
+import Img06 from "../assets/request.png";
+import { useNavigate } from "react-router-dom";
+import { LuMessagesSquare } from "react-icons/lu";
+import { CgProfile } from "react-icons/cg";
+import { PiCameraRotate } from "react-icons/pi";
+import { GoHome } from "react-icons/go";
+
 const Home = () => {
   // Sample transactions
   const transactions = [
@@ -47,122 +53,137 @@ const Home = () => {
     },
   ];
 
+  const navigate = useNavigate();
+  const handleTransfer = () => {
+    navigate("/transfer");
+  };
+
+  const handleTopUp = () => {
+    navigate("/Topup");
+  };
+  const handleHistory = () => {
+    navigate("/history");
+  };
   return (
     <div className="app">
       {/* Profile Header */}
-      <div className="flex items-center justify-between p-3">
+      <div className="flex items-center p-3 ">
         <div className="profile space-x-1">
           <img
             src="https://randomuser.me/api/portraits/men/41.jpg"
             alt="profile"
             className="profile-img"
           />
-          <div className="-mb-4 items-center">
-            <p className="font-bold leading-none">
-              Wasiru <br /> <p className="font-normal">Account</p>
-            </p>
+          <div className="-mb-4">
+            <p className="font-bold leading-none -ml-3 mr-1">Wasiru</p>
           </div>
         </div>
-
-        <div>
-          <h2 className="h2Home bg-transparent">Ajo</h2>
-        </div>
-
-        <div className="notification-bell">
-          <IoIosNotifications size={30} />
+        <div className="ml-16">
+          <span className="flex space-x-20 items-center">
+            <h2 className="bg-transparent text-3xl -mb-1">AJO</h2>
+            <IoIosNotificationsOutline className="" size={30} />
+          </span>
         </div>
       </div>
 
       {/* Account Card */}
-      <div className="account-card rounded-2xl">
-        <div className="account-info">
-          <p>0987-6543-2810-7821</p>
-          <h2>₦ 1,500,000.00 NGN</h2>
-          <p className="account-type">Smart Account</p>
-        </div>
-        <div className="qr-code">
-          <BiQrScan className="bg-white text-black rounded-md" size={40} />
+      <div className="">
+        <span className="font-semibold px-4 ">Default Acount</span>
+        <div className="account-card rounded-2xl">
+          <div className="account-info">
+            <div className="flex flex-row space-x-32">
+              <p>0987-6543-2810-7821</p>
+              <div className="qr-code">
+                <BiQrScan
+                  className="bg-white text-black rounded-md"
+                  size={40}
+                />
+              </div>
+            </div>
+            <div className="flex items-center space-x-1 mt-2">
+              <h2>1,500,000.00 </h2>
+              <span className="">NGN</span>
+            </div>
+            <p className="-mt-2">Smart Account</p>
+          </div>
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="action-buttons -mt-2">
-        <a href="transfer" className="btag">
+      <div className="action-buttons px-4">
+        <div>
           {" "}
-          <button className="rounded-2xl py-4 -mb-2 hover:bg-black hover:text-white ease-in duration-200">
-            <BiTransfer
-              className="mx-auto mb-0 -mt-2 hover:text-white"
-              size={30}
-            />
-            Transfer
-          </button>{" "}
-        </a>
+          <button
+            onClick={handleTransfer}
+            className="box-border rounded-2xl py-3 px-3 -mb-2 "
+          >
+            <img src={Img05} className="flex-col mx-auto w-8 h-8" />
+            <span className="mx-1">Transfer</span>
+          </button>
+        </div>
 
-        <a href="Topup" className="btag">
+        <div>
           {" "}
-          <button className="rounded-2xl py-4 -mb-2 hover:bg-black hover:text-white ease-in duration-200">
-            <PiHandDeposit
-              className="mx-auto mb-0 -mt-2 hover:text-white"
-              size={30}
-            />
-            Topup
+          <button
+            onClick={handleTopUp}
+            className="box-border rounded-2xl py-3 px-3 -mb-2 "
+          >
+            <img src={Img04} className="flex-col mx-auto w-8 h-8" />
+            <span className="mx-1">Top-up</span>
           </button>{" "}
-        </a>
-        <a href="" className="btag">
+        </div>
+        <div>
           {" "}
-          <button className="rounded-2xl py-4 -mb-2 hover:bg-black hover:text-white ease-in duration-200">
-            <MdSendToMobile
-              className="mx-auto mb-0 -mt-2 hover:text-white"
-              size={30}
-            />
-            Pay Ajo
+          <button className="box-border rounded-2xl py-3 px-3 -mb-2 ">
+            <img src={Img07} className="flex-col mx-auto w-8 h-8" />
+            <span className="mx-1">Withdraw</span>
           </button>{" "}
-        </a>
-        <a href="" className="btag">
+        </div>
+        <div>
           {" "}
-          <button className="rounded-2xl py-4 -mb-2 hover:bg-black hover:text-white ease-in duration-200">
-            <MdCallMissedOutgoing
-              className="mx-auto mb-0 -mt-2 hover:text-white"
-              size={30}
-            />
-            Request
+          <button className="box-border rounded-2xl py-3 px-3 -mb-2 ">
+            <img src={Img06} className="flex-col mx-auto w-8 h-8" />
+            <span className="mx-1">Request</span>
           </button>{" "}
-        </a>
+        </div>
       </div>
 
       {/* Transaction History */}
-      <div className="transaction-history">
+      <div className="px-3 py-2 mt-3">
         <div className="history-header">
           <h3>Recent History</h3>
           <a href="history">
             {" "}
-            <button className="see-all">See All &gt;</button>{" "}
+            <button onClick={handleHistory} className="see-all">
+              See All &gt;
+            </button>{" "}
           </a>
         </div>
       </div>
-
-      {transactions.map((transaction) => (
-        <div key={transaction.id} className="transaction-item py-2">
-          {" "}
-          <br /> <br />
-          <p className="atag px-4 font-semibold">
-            {transaction.date} | <br /> {transaction.type} <br /> <br />
-          </p>
-          <div className="ptag px-4 font-semibold">
-            <p className={transaction.positive ? "positive" : "negative"}>
-              {transaction.amount} NGN
+      <div className="w-full">
+        {transactions.map((transaction) => (
+          <div key={transaction.id} className="transaction-item h-max py-2">
+            {" "}
+            <br /> <br />
+            <p className="atag px-4 font-semibold">
+              {transaction.date} | <br /> {transaction.type} <br /> <br />
             </p>
+            <div className="ptag px-4 font-semibold">
+              <p className={transaction.positive ? "positive" : "negative"}>
+                {transaction.amount} NGN
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       {/* Bottom Navigation */}
-      <nav className="bottom-navigation">
-        <button>Home</button>
-        <button>Calendar</button>
-        <button>Search</button>
-        <button>Messages</button>
-        <button>Profile</button>
+      <nav className="bottom-navigation items-center">
+        <GoHome size={20} />
+        <LuMessagesSquare size={20} />
+        <PiCameraRotate className="mx-2 -my-1 " size={40} />
+        <LuMessagesSquare size={20} />
+        <CgProfile size={20} />
       </nav>
     </div>
   );

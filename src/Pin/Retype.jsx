@@ -34,7 +34,7 @@ const Retype = () => {
       if (pin.join("") === pin1) {
         // Compare with pin1
         setTimeout(() => {
-          navigate("/setupaccount");
+          navigate("/signupsuccess");
         }, 500);
       } else {
         alert("Pins do not match!");
