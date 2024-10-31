@@ -6,6 +6,7 @@ import React from "react";
 import { TbCurrencyNaira } from "react-icons/tb";
 import { BiTransfer } from "react-icons/bi";
 import { FormGroup, Label } from "reactstrap";
+import NavBar from "../Home/NavBar.tsx";
 
 const TransferNew = () => {
   const navigate = useNavigate();

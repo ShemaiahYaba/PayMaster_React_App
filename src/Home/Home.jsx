@@ -1,17 +1,12 @@
-// src/App.jsx
-
 import "./home.css";
+import Img04 from "../assets/topup.png";
+import Img05 from "../assets/bill.png";
+import Img06 from "../assets/request.png";
+import Img07 from "../assets/withdraw.png";
+import NavBar from "./NavBar.tsx";
+import { useNavigate } from "react-router-dom";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { BiQrScan } from "react-icons/bi";
-import Img07 from "../assets/withdraw.png";
-import Img04 from "../assets/topup.png";
-import Img05 from "../assets/transfer.png";
-import Img06 from "../assets/request.png";
-import { useNavigate } from "react-router-dom";
-import { LuMessagesSquare } from "react-icons/lu";
-import { CgProfile } from "react-icons/cg";
-import { PiCameraRotate } from "react-icons/pi";
-import { GoHome } from "react-icons/go";
 
 const Home = () => {
   // Sample transactions
@@ -54,9 +49,6 @@ const Home = () => {
   ];
 
   const navigate = useNavigate();
-  const handleTransfer = () => {
-    navigate("/transfer");
-  };
 
   const handleTopUp = () => {
     navigate("/Topup");
@@ -64,6 +56,7 @@ const Home = () => {
   const handleHistory = () => {
     navigate("/history");
   };
+
   return (
     <div className="app">
       {/* Profile Header */}
@@ -114,23 +107,19 @@ const Home = () => {
         <div>
           {" "}
           <button
-            onClick={handleTransfer}
-            className="box-border rounded-2xl py-3 px-3 -mb-2 "
-          >
-            <img src={Img05} className="flex-col mx-auto w-8 h-8" />
-            <span className="mx-1">Transfer</span>
-          </button>
-        </div>
-
-        <div>
-          {" "}
-          <button
             onClick={handleTopUp}
             className="box-border rounded-2xl py-3 px-3 -mb-2 "
           >
             <img src={Img04} className="flex-col mx-auto w-8 h-8" />
             <span className="mx-1">Top-up</span>
           </button>{" "}
+        </div>
+        <div>
+          {" "}
+          <button className="box-border rounded-2xl py-3 px-3 -mb-2 ">
+            <img src={Img05} className="flex-col mx-auto w-8 h-8" />
+            <span className="mx-1">Pay Ajo</span>
+          </button>
         </div>
         <div>
           {" "}
@@ -151,13 +140,10 @@ const Home = () => {
       {/* Transaction History */}
       <div className="px-3 py-2 mt-3">
         <div className="history-header">
-          <h3>Recent History</h3>
-          <a href="history">
-            {" "}
-            <button onClick={handleHistory} className="see-all">
-              See All &gt;
-            </button>{" "}
-          </a>
+          <h3>Recent History</h3>{" "}
+          <button onClick={handleHistory} className="see-all">
+            See All &gt;
+          </button>{" "}
         </div>
       </div>
       <div className="w-full">
@@ -178,13 +164,7 @@ const Home = () => {
       </div>
 
       {/* Bottom Navigation */}
-      <nav className="bottom-navigation items-center">
-        <GoHome size={20} />
-        <LuMessagesSquare size={20} />
-        <PiCameraRotate className="mx-2 -my-1 " size={40} />
-        <LuMessagesSquare size={20} />
-        <CgProfile size={20} />
-      </nav>
+      <NavBar />
     </div>
   );
 };

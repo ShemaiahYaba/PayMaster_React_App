@@ -10,14 +10,15 @@ import Retype from "./Pin/Retype.jsx";
 import SetupAccount from "./Setup/SetupAccount.jsx";
 import Start from "./Begin/Start.jsx";
 import Account from "./Account/Account.jsx";
-import Home from "./Hom/Home.jsx";
-import History from "./Historiy/History.jsx";
+import Home from "./Home/Home.jsx";
+import History from "./History/History.jsx";
 import Top from "./TopUp/Top.jsx";
 import TopUp from "./TopUp/TopUp.jsx";
 import Profile from "./Profile/Profile.jsx";
 import ForgotPasswordEmailSent from "./LogIn/ForgotPasswordEmailSent.tsx";
 import SignUpSuccess from "./SignUp/SignUpSuccess.tsx";
 import TransferNew from "./Transfer/TransferNew.tsx";
+import Settings from "./Profile/Settings.tsx";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path="/Top" element={<Top />} />
           <Route path="/Topup" element={<TopUp />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </Router>
     </>
