@@ -56,6 +56,7 @@ const Profile = () => {
 };
 
 // Menu Item Component
+// eslint-disable-next-line react/prop-types
 const MenuItem = ({ label }) => (
   <>
     <div>
