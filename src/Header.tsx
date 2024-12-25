@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ title, onBackClick, icon }) => {
   return (
     <header className="flex items-center justify-between py-4 px-6 relative">
       <button onClick={onBackClick}>
-        <FaArrowLeft size={20} />
+        <FaArrowLeft size={20} className="-mt-3" />
       </button>
       <h1
         className={`text-2xl font-bold tracking-tight ${
@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ title, onBackClick, icon }) => {
         {title}
       </h1>
       {icon ? (
-        <div className="absolute top-4 right-4">{icon}</div>
+        <button className="-mt-3">{icon}</button>
       ) : (
         <div className="w-6"></div> // Placeholder to keep the layout balanced
       )}

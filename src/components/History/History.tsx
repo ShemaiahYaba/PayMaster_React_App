@@ -1,9 +1,8 @@
 import React from "react";
+import Header from "../../Header.tsx";
 import "./history.css";
-import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { FaFilter } from "react-icons/fa";
-import { FaWallet } from "react-icons/fa";
 
 function History() {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ function History() {
   const transactions = [
     {
       id: 1,
-      icon: <FaWallet />,
+      icon: "mobile-topup-icon.png",
       title: "Mobile Topup",
       date: "Mar 27, 2024",
       amount: "3,000",
@@ -56,34 +55,24 @@ function History() {
 
   return (
     <div className="App">
-      {/* Header Section */}
-      <div className="header">
-        <button
-          onClick={handleGoBack}
-          className="back-button absolute top-4 left-4 text-black"
-        >
-          <FaArrowLeft size={20} />
-        </button>
-
-        <div className="header-title">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="font-bold tracking-tight back-button absolute top-3 left-20 right-20 text-black">
-              History
-            </h2>
-          </div>
-        </div>
-        <button className="text-black hover:text-gray-700">
-          <FaFilter size={20} />
-        </button>
+      <div>
+        <Header
+          title="History"
+          onBackClick={handleGoBack}
+          icon={<FaFilter size={20} className="text-black" />}
+        />
       </div>
-
       {/* Transactions List */}
       <div className="transaction-list">
         <h2 className="bg-gray-300 px-2 font-semibold text-base">March</h2>
         {transactions.slice(0, 3).map((transaction) => (
           <div key={transaction.id} className="transaction-item">
             <div className="transaction-icon">
-              <img src={transaction} alt="icon" />
+              {typeof transaction.icon === "string" ? (
+                <img src={transaction.icon} alt="icon" />
+              ) : (
+                transaction.icon
+              )}
             </div>
             <div className="transaction-details">
               <div className="transaction-title">{transaction.title}</div>
@@ -144,7 +133,7 @@ function History() {
       </div>
 
       {/* Bottom Navbar */}
-      <div className="navbar">
+      <div className="navbar ">
         <div className="nav-item">Home</div>
         <div className="nav-item">Calendar</div>
         <div className="nav-item">Search</div>

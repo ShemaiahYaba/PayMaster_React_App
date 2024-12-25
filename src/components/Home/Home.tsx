@@ -1,5 +1,4 @@
 import React from "react";
-import "./home.css";
 import Img04 from "../../assets/topup.png";
 import Img05 from "../../assets/bill.png";
 import Img06 from "../../assets/request.png";
@@ -47,6 +46,20 @@ const Home = () => {
       date: "Jan 31, 2024",
       positive: true,
     },
+    {
+      id: 6,
+      type: "Cash Deposit",
+      amount: "+1,500,000",
+      date: "Jan 31, 2024",
+      positive: true,
+    },
+    {
+      id: 6,
+      type: "Cash Deposit",
+      amount: "+1,500,000",
+      date: "Jan 31, 2024",
+      positive: true,
+    },
   ];
 
   const navigate = useNavigate();
@@ -59,10 +72,10 @@ const Home = () => {
   };
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-screen w-full px-1">
       {/* Profile Header */}
       <div className="flex items-center p-3 ">
-        <div className="border-width-[1px] border-solid border-[#e6eef7] flex items-center p-1 bg-[#e6eef7] rounded-[35px] text-black shadow-lg shadow-[#e6eef7] space-x-1">
+        <div className="flex items-center p-2 bg-[#e6eef7] rounded-[35px] text-black shadow-lg shadow-[#e6eef7] space-x-1">
           <img
             src="https://randomuser.me/api/portraits/men/41.jpg"
             alt="profile"
@@ -106,7 +119,7 @@ const Home = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-center items-center space-x-2 -mt-2 -mb-4">
+      <div className="flex justify-center items-center space-x-3 -mt-2 -mb-4">
         <div>
           {" "}
           <button
@@ -141,31 +154,41 @@ const Home = () => {
       </div>
 
       {/* Transaction History */}
-      <div className="px-3 py-2 mt-3">
-        <div className="history-header">
-          <h3>Recent History</h3>{" "}
-          <button onClick={handleHistory} className="see-all">
+      <div className="bg-transparent">
+        <div className="flex justify-between items-center px-4 py-2 mt-4">
+          <h3>Recent History</h3>
+          <button
+            onClick={handleHistory}
+            className="border-none bg-transparent text-black text-xl"
+          >
             See All &gt;
-          </button>{" "}
+          </button>
+        </div>
+        <div className="rounded-2xl p-4 mx-4 -mt-2 overflow-y-scroll h-60 border-2 border-[#e6eef7]">
+          {transactions.map((transaction) => (
+            <div
+              key={transaction.id}
+              className="flex justify-between items-center py-1"
+            >
+              <div>
+                <p className="font-semibold leading-5">
+                  {transaction.type} <br /> {transaction.date}
+                </p>{" "}
+              </div>
+              <div>
+                <p
+                  className={`font-semibold ${
+                    transaction.positive ? "text-green-500" : "text-red-500"
+                  }`}
+                >
+                  {transaction.amount} NGN
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      <div className="w-full">
-        {transactions.map((transaction) => (
-          <div key={transaction.id} className="transaction-item h-max py-2">
-            {" "}
-            <br /> <br />
-            <p className="atag px-4 font-semibold">
-              {transaction.date} | <br /> {transaction.type} <br /> <br />
-            </p>
-            <div className="ptag px-4 font-semibold">
-              <p className={transaction.positive ? "positive" : "negative"}>
-                {transaction.amount} NGN
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
+      <div className="flex0-grow"></div>
       {/* Bottom Navigation */}
       <NavBar />
     </div>

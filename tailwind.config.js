@@ -1,21 +1,20 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme');
+import { fontFamily as _fontFamily } from "tailwindcss/defaultTheme";
 
-module.exports = {
-  // Where Tailwind should look for class names
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // Updated to capture all subfolders and js/jsx/ts/tsx files
-    "./index.html", // Adjust path if this is not in the project root
-  ],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Poppins', 'Inter var', ...defaultTheme.fontFamily.sans],
-      },
+export const content = [
+  "./src/**/*.{js,jsx,ts,tsx}", // Updated to capture all subfolders and js/jsx/ts/tsx files
+  "./index.html", // Adjust path if this is not in the project root
+];
+export const theme = {
+  extend: {
+    fontFamily: {
+      sans: ["Poppins", "Inter var", ..._fontFamily.sans],
     },
   },
-  important: true, // Makes Tailwind's styles take priority
-  plugins: [
-    require('@tailwindcss/forms'), // Adds the Tailwind forms plugin
-  ],
 };
+export const important = true;
+import forms from "@tailwindcss/forms";
+
+export const plugins = [
+  forms, // Adds the Tailwind forms plugin
+];
