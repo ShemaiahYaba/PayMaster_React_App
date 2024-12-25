@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CgLogOut } from "react-icons/cg";
 import PropTypes from "prop-types";
-import Header from "../../Header";
+import Header from "../../Header.tsx";
 import Img08 from "../../assets/profile.png";
 import Img09 from "../../assets/bookmark.png";
 import Img10 from "../../assets/pools.png";
