@@ -6,6 +6,7 @@ import Header from "../../Header.tsx";
 import Img08 from "../../assets/profile.png";
 import Img09 from "../../assets/bookmark.png";
 import Img10 from "../../assets/pools.png";
+import Img11 from "../../assets/settings.png";
 import Img12 from "../../assets/pool.png";
 
 const Profile = () => {
@@ -77,7 +78,7 @@ const Profile = () => {
             label="Your pools"
           />
           <MenuItem
-            icon={<img src={} className="w-9 h-9" />}
+            icon={<img src={Img11} className="w-9 h-9" />}
             label="Settings"
             onClick={handleSettings}
           />
