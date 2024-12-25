@@ -36,7 +36,7 @@ const Profile = () => {
         <div className="text-center mb-6">
           <div className="relative">
             <img
-              src="https://via.placeholder.com/100"
+              src="https://randomuser.me/api/portraits/men/41.jpg"
               alt="Profile"
               className="mx-auto rounded-full border-4 border-white shadow-md"
             />
