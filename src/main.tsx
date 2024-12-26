@@ -1,7 +1,7 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-// import "./index.css";
+import "./index.css";
 import "./input.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CurrencyProvider } from "./contexts/CurrencyContext.tsx";
