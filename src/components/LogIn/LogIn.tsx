@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FormGroup, Label } from "reactstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 import { useNavigate } from "react-router-dom";
-import Header from "../../Header";
+import Header from "../Header";
 
 function LogIn() {
   const navigate = useNavigate();

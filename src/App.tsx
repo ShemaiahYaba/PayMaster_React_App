@@ -1,4 +1,5 @@
 import React from "react";
+import "../../utils/ImageDeclaration.d.ts";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Onboarding from "./components/Welcome/Onboarding.tsx";
 import SignUp from "./components/SignUp/SignUp.tsx";

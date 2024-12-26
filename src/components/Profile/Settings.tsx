@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../Header";
+import Header from "../Header";
 import { useNavigate } from "react-router-dom";
 import { useCurrency } from "../../contexts/CurrencyContext"; // Import the useCurrency hook
 import { useLanguage } from "../../contexts/LanguageContext";

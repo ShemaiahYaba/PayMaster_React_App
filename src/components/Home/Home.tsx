@@ -1,4 +1,5 @@
 import React from "react";
+import "../../utils/ImageDeclaration.d.ts";
 import Img04 from "../../assets/topup.png";
 import Img05 from "../../assets/bill.png";
 import Img06 from "../../assets/request.png";

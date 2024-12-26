@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../Header.tsx";
+import Header from "../Header.tsx";
 import "./history.css";
 import { useNavigate } from "react-router-dom";
 import { FaFilter } from "react-icons/fa";
