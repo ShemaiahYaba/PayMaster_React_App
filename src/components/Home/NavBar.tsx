@@ -1,7 +1,6 @@
 import React from "react";
 import { LuMessagesSquare } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
-import Img08 from "../../assets/profile.png";
 import { GoHome } from "react-icons/go";
 import { GrTransaction } from "react-icons/gr";
 import { LuScanLine } from "react-icons/lu";

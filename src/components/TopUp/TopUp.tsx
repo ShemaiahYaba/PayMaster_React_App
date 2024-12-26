@@ -7,6 +7,9 @@ const TopUp = () => {
   const handleGoBack = () => {
     navigate("/home");
   };
+  const handleCard = () => {
+    navigate("/top");
+  };
 
   return (
     <div style={styles.container as React.CSSProperties}>
@@ -50,7 +53,9 @@ const TopUp = () => {
         <div style={styles.paymentMethodLabel}>Select payment method</div>
         <a href="top" className="btag">
           {" "}
-          <button style={styles.paymentButton}>Card</button>{" "}
+          <button style={styles.paymentButton} onClick={handleCard}>
+            Card
+          </button>{" "}
         </a>
         <a href="transfer" className="btag">
           {" "}

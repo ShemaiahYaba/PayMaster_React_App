@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FormGroup, Label } from "reactstrap";
-import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 import { useNavigate } from "react-router-dom";
 import Header from "../../Header";
 

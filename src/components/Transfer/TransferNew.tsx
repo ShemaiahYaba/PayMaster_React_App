@@ -1,7 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa"; // Import eye icons
 import { useNavigate } from "react-router-dom";
-import React from "react";
 import { TbCurrencyNaira } from "react-icons/tb";
 import { BiTransfer } from "react-icons/bi";
 import { FormGroup, Label } from "reactstrap";

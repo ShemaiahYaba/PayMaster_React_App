@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePin } from "../../contexts/PinContext"; // Correctly import usePin
 import "./pin.css";
-import { FaArrowLeft } from "react-icons/fa";
 
 const Retype = () => {
   const { pin1 } = usePin(); // PIN from the first page

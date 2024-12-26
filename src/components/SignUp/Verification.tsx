@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import React from "react";
 
 const Verification = () => {
   const inputRefs = React.useRef<(HTMLInputElement | null)[]>([]);
