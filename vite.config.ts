@@ -13,7 +13,7 @@ export default defineConfig({
   build: {
     outDir: "dist",
     rollupOptions: {
-      input: "/src/main.tsx", // Ensure this path is correct
+      input: "/src/main.jsx", // Ensure this path is correct
     },
   },
 });
