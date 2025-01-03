@@ -18,3 +18,10 @@ import forms from "@tailwindcss/forms";
 export const plugins = [
   forms, // Adds the Tailwind forms plugin
 ];
+
+export const purge = {
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  options: {
+    safelist: [],
+  },
+};
