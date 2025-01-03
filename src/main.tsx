@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { CurrencyProvider } from "./contexts/CurrencyContext.tsx";
 import { LanguageProvider } from "./contexts/LanguageContext.tsx";
 import { PinProvider } from "./contexts/PinContext.tsx";
+import React from "react";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {

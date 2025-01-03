@@ -18,6 +18,7 @@ import TransferNew from "./components/Transfer/TransferNew.tsx";
 import Settings from "./components/Profile/Settings.tsx";
 import CurrencySelection from "./components/Profile/SettingsCurrency.tsx";
 import LanguageSelection from "./components/Profile/SettingsLanguage.tsx";
+import React from "react";
 
 function App() {
   return (
