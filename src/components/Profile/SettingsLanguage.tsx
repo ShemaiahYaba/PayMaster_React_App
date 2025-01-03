@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useLanguage } from "../../contexts/LanguageContext"; // Import the useLanguage hook
+import { useLanguage } from "../../contexts/LanguageContext.tsx"; // Import the useLanguage hook
 
 const LanguageSelection = () => {
   const navigate = useNavigate();

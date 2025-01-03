@@ -1,6 +1,6 @@
 import React, { useState } from "react"; // Import useState for managing active slide
-import SwipeableAutoSlider from "./SwipeableComponent";
-import Breadcrumb from "./BreadCrumb"; // Import the Breadcrumb component
+import SwipeableAutoSlider from "./SwipeableComponent.tsx";
+import Breadcrumb from "./BreadCrumb.tsx"; // Import the Breadcrumb component
 import { Button, ButtonGroup } from "reactstrap";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 

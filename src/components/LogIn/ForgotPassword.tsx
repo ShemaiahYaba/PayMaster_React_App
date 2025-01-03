@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../Header";
+import Header from "../Header.tsx";
 import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {

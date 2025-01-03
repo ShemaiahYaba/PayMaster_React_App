@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePin } from "../../contexts/PinContext"; // Correctly import usePin
+import { usePin } from "../../contexts/PinContext.tsx"; // Correctly import usePin
 import "./pin.css";
 
 const Retype = () => {

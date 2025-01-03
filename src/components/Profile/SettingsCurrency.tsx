@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useCurrency } from "../../contexts/CurrencyContext"; // Import the useCurrency hook
+import { useCurrency } from "../../contexts/CurrencyContext.tsx"; // Import the useCurrency hook
 
 const CurrencySelection = () => {
   const navigate = useNavigate();
