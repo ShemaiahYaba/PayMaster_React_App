@@ -1,138 +1,68 @@
-import React from "react";
-import { FaArrowLeft } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TbCurrencyNaira } from "react-icons/tb";
+import Header from "../Header";
 const TopUp = () => {
   const navigate = useNavigate();
+  const [balance, setBalance] = useState(0);
   const handleGoBack = () => {
     navigate("/home");
   };
   const handleCard = () => {
     navigate("/top");
+
+    // Fetch balance from the API
+    useEffect(() => {
+      const fetchBalance = async () => {
+        try {
+          const response = await fetch("https://api.example.com/balance"); // Replace with your API endpoint
+          const data = await response.json();
+          setBalance(data.balance); // Update state with fetched balance
+        } catch (error) {
+          console.error("Error fetching balance:", error);
+        }
+      };
+
+      fetchBalance();
+    }, []); // Fetch balance only once when the component mounts
+  };
+  const handleTransfer = () => {
+    navigate("/transfer");
   };
 
   return (
-    <div style={styles.container as React.CSSProperties}>
+    <div className="flex flex-col h-screen py-2 bg-black text-white overflow-hidden">
       {/* Header Section */}
-      <div className="header">
+      <div>
+        <Header title="Top Up" onBackClick={handleGoBack}></Header>{" "}
+      </div>
+      <div className="flex flex-col items-start px-4 py-2">
+        <div className="flex-grow py-32"></div>
+        <p className="text-gray-300 text-xl">Balance</p>
+        <div className="flex flex-row items-center">
+          <TbCurrencyNaira className="text-5xl text-white" />
+          <p className="font-bold text-6xl">{balance}</p>
+        </div>
+      </div>
+      <div className="bg-white text-black flex flex-col px-4 py-12 rounded-t-[40px]">
+        <p className="items-start ml-4 font-bold text-xl -mt-4">
+          Select payment method
+        </p>
         <button
-          onClick={handleGoBack}
-          className="back-button absolute top-4 left-4 text-white"
+          className="bg-black text-white font-semibold py-3 my-2 rounded-2xl"
+          onClick={handleCard}
         >
-          <FaArrowLeft size={20} />
+          {" "}
+          Card
         </button>
-
-        <div className="header-title">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="font-bold tracking-tight back-button absolute top-3 left-20 right-20 text-white">
-              Top Up
-            </h2>
-          </div>
-        </div>
-      </div>
-
-      {/* Balance Display */}
-      <div style={styles.balanceContainer as React.CSSProperties}>
-        <div style={styles.balanceLabel}>Balance</div>
-        <div className="flex items-center space-x-2 ">
-          <TbCurrencyNaira className="text-white" size={50} />
-          <input
-            className="w-1/2 rounded-2xl font-medium text-5xl bg-transparent border-0 focus:ring-0 focus:ring-white active:bg-transparent"
-            placeholder="0.00"
-            type="text" // Changed from 'float' to 'text'
-            required
-            id="amount"
-            name="amount"
-            // Directly pass handleChange
-          />
-        </div>
-      </div>
-
-      {/* Payment Method Section */}
-      <div style={styles.paymentMethodContainer as React.CSSProperties}>
-        <div style={styles.paymentMethodLabel}>Select payment method</div>
-        <a href="top" className="btag">
-          {" "}
-          <button style={styles.paymentButton} onClick={handleCard}>
-            Card
-          </button>{" "}
-        </a>
-        <a href="transfer" className="btag">
-          {" "}
-          <button style={styles.paymentButton}>Transfer</button>
-        </a>
+        <button
+          className="bg-black text-white font-semibold py-3 my-2 rounded-2xl"
+          onClick={handleTransfer}
+        >
+          Transfer
+        </button>
       </div>
     </div>
   );
 };
-
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh",
-    backgroundColor: "#000",
-    color: "#fff",
-  },
-  header: {
-    width: "100%",
-    padding: "10px 20px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    position: "absolute",
-    top: 0,
-    left: 0,
-  },
-  backArrow: {
-    fontSize: "24px",
-    cursor: "pointer",
-  },
-  title: {
-    fontSize: "20px",
-    fontWeight: "bold",
-  },
-  balanceContainer: {
-    marginTop: "100px",
-    textAlign: "center",
-  },
-  balanceLabel: {
-    fontSize: "18px",
-    color: "#aaa",
-    marginBottom: "10px",
-  },
-  balanceAmount: {
-    fontSize: "48px",
-    fontWeight: "bold",
-  },
-  paymentMethodContainer: {
-    backgroundColor: "#fff",
-    padding: "20px",
-    borderRadius: "18px",
-    width: "90%",
-    maxWidth: "400px",
-    textAlign: "center",
-    marginTop: "40px",
-  },
-  paymentMethodLabel: {
-    fontSize: "16px",
-    marginBottom: "20px",
-    color: "#000",
-  },
-  paymentButton: {
-    width: "100%",
-    padding: "15px",
-    margin: "10px 0",
-    fontSize: "18px",
-    fontWeight: "bold",
-    backgroundColor: "#000",
-    color: "#fff",
-    border: "none",
-    borderRadius: "18px",
-    cursor: "pointer",
-  },
-};
-
 export default TopUp;

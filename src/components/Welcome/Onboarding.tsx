@@ -29,7 +29,7 @@ function Onboarding() {
           setCurrentIndex={setCurrentIndex}
         />
 
-        <div style={{ marginTop: "-50px" }}>
+        <div className="-mt-20">
           {/* Use the updated Breadcrumb component */}
           <Breadcrumb
             slides={slides}

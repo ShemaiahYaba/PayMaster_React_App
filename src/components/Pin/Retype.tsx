@@ -54,7 +54,7 @@ const Retype = () => {
     <>
       <div className="flex flex-col items-center justify-center h-screen">
         <h1 className="text-[black] font-bold">Confirm your PIN</h1>
-        <div className="flex justify-evenly items-center space-x-1 mb-3">
+        <div className="flex justify-evenly items-center space-x-2 mb-3">
           {pin.map((digit, index) => (
             <input
               key={index}
@@ -62,7 +62,7 @@ const Retype = () => {
               value={digit}
               onChange={(e) => handleInputChange(e, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className="w-14 h-14 text-center rounded-xl border-[black]"
+              className="w-14 h-14 text-center rounded-xl border border-black"
               ref={(el) => (inputRefs.current[index] = el)}
               maxLength={1}
             />

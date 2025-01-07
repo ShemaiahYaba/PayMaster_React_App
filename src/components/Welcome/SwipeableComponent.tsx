@@ -11,12 +11,7 @@ const content = [
     text: (
       <div className="relative isolate pt-14 lg:px-8">
         <div className="mx-auto max-w-2xl py-16 sm:py-32 lg:py-48">
-          <div
-            className="text-center"
-            style={{
-              marginTop: "-60px",
-            }}
-          >
+          <div className="text-center -mt-16">
             <h1 className="text-4xl font-bold leading-none tracking-tight text-gray-900 sm:text-6xl">
               Gain total control of your money
             </h1>
@@ -33,12 +28,7 @@ const content = [
     text: (
       <div className="relative isolate pt-14 lg:px-8">
         <div className="mx-auto max-w-2xl py-16 sm:py-32 lg:py-48">
-          <div
-            className="text-center"
-            style={{
-              marginTop: "-60px",
-            }}
-          >
+          <div className="text-center -mt-16">
             <h1 className="text-4xl font-bold leading-none tracking-tight text-gray-900 sm:text-6xl">
               Seamless transactions
             </h1>
@@ -77,41 +67,21 @@ const SwipeableAutoSlider: React.FC<SwipeableAutoSliderProps> = ({
   }, []);
 
   return (
-    <div
-      className="min-h-screen flex flex-col justify-center items-center bg-white"
-      style={{ marginTop: "20px" }}
-    >
+    <div className="min-h-screen flex flex-col justify-center items-center bg-white mt-5">
       <motion.div
         key={currentIndex}
         initial={{ opacity: 0, x: currentIndex === 0 ? -300 : 300 }} // Initial position for swipe
         animate={{ opacity: 1, x: 0 }} // Animate to center
         exit={{ opacity: 0, x: currentIndex === 0 ? 300 : -300 }} // Exit animation for swipe
         transition={{ duration: 0.8 }} // Smooth transition duration
-        style={{
-          width: "100%",
-          maxWidth: "600px",
-          borderRadius: "8px",
-          overflow: "hidden",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        className="flex flex-col w-full max-w-2xl justify-center items-center rounded-lg overflow-hidden"
       >
         <img
           src={content[currentIndex].image}
           alt="Swipeable content"
-          style={{ width: "100%", height: "auto" }}
+          className="w-full h-auto"
         />
-        <div
-          style={{
-            padding: "20px 30px", // Maintained original padding format
-            textAlign: "center",
-            marginTop: "-30px",
-          }}
-        >
-          {content[currentIndex].text}
-        </div>
+        <div className="px-5 py-8 -mt-8">{content[currentIndex].text}</div>
       </motion.div>
     </div>
   );

@@ -124,17 +124,17 @@ const Verification = () => {
           }
         >
           <div className={isInputFocused ? "mt-0" : "mt-28"}>
-            <h2 className="tracking-tighter text-5xl text-left bg-transparent  ">
+            <h2 className="tracking-tighter text-5xl text-left bg-transparent px-3">
               Enter your Verification Code
             </h2>{" "}
             <br />
-            <div className="flex justify-evenly items-center space-x-1 mb-3">
+            <div className="flex justify-evenly items-center space-x-1 mb-3 px-3 ">
               {code.map((digit, index) => (
                 <input
                   key={index}
                   id={`digit-${index}`}
-                  type="text"
-                  className="w-14 h-16 text-center rounded-xl focus:border-black"
+                  type="password"
+                  className="w-14 h-16 text-center rounded-xl text-black border border-black focus:border-black"
                   ref={(el) => (inputRefs.current[index] = el)}
                   value={digit}
                   onChange={(event) => handleChange(event, index)}
@@ -147,9 +147,9 @@ const Verification = () => {
             </div>
           </div>
 
-          <div className="px-2">
+          <div className="px-3">
             <h3 className="font-bold">{formatTime()}</h3>
-            <p className="text-left font-regular text-lg tracking-tight leading-6">
+            <p className="text-left font-regular text-lg tracking-tighter leading-6">
               We send Verification code to your email
               <span className="text-[black] font-bold tracking-tight">
                 {" "}

@@ -25,7 +25,10 @@ function SignUp() {
       setError("Please enter a valid email.");
       return false;
     }
-
+    if (name === "") {
+      setError("Name cannot be empty.");
+      return false;
+    }
     // Validate password length
     if (password.length < 6) {
       setError("Password must be at least 6 characters long.");
@@ -70,89 +73,85 @@ function SignUp() {
             className="space-y-6"
             onSubmit={handleVerification}
           >
-            <div>
-              <div className="mt-2 relative">
-                <FormGroup floating>
-                  <div>
-                    <input
-                      type="name"
-                      name="name"
-                      id="name"
-                      placeholder=""
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)} // Update Name state
-                      style={{ border: "none", borderRadius: "15px" }}
-                      className="peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black] placeholder-slate-400"
-                    />
-                    <Label
-                      htmlFor="name"
-                      className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
-                    >
-                      Name
-                    </Label>
-                  </div>
-                </FormGroup>
-                <FormGroup floating>
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder="you@example.com"
-                      autoComplete="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)} // Update email state
-                      style={{ border: "none", borderRadius: "15px" }}
-                      className="peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black]"
-                    />
-                    <Label
-                      htmlFor="email"
-                      className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
-                    >
-                      Email
-                    </Label>
-                  </div>
-                </FormGroup>
-              </div>
+            <div className="mt-2 relative">
+              <FormGroup floating>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="you@example.com"
+                    autoComplete="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)} // Update email state
+                    style={{ border: "none", borderRadius: "15px" }}
+                    className="peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black]"
+                  />
+                  <Label
+                    htmlFor="email"
+                    className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
+                  >
+                    Email
+                  </Label>
+                </div>
+              </FormGroup>
+              <FormGroup floating>
+                <div>
+                  <input
+                    type="name"
+                    name="name"
+                    id="name"
+                    placeholder=""
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)} // Update Name state
+                    style={{ border: "none", borderRadius: "15px" }}
+                    className="peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black] placeholder-slate-400"
+                  />
+                  <Label
+                    htmlFor="name"
+                    className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
+                  >
+                    Name
+                  </Label>
+                </div>
+              </FormGroup>
             </div>
-            <div>
-              <div className="mt-2 relative">
-                <FormGroup floating>
-                  <div className="relative">
-                    <input
-                      placeholder=""
-                      id="password"
-                      name="password"
-                      type={passwordVisible ? "text" : "password"} // Toggle input type based on state
-                      required
-                      autoComplete="current-password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)} // Update password state
-                      style={{ border: "none", borderRadius: "15px" }}
-                      className="peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black]"
-                    />
-                    <Label
-                      htmlFor="password"
-                      className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
-                    >
-                      Password
-                    </Label>
-                    {/* Eye icon to toggle password visibility */}
-                    <div
-                      onClick={togglePasswordVisibility}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                    >
-                      {passwordVisible ? (
-                        <FaEyeSlash size={20} />
-                      ) : (
-                        <FaEye size={20} />
-                      )}
-                    </div>
+            <div className="mt-2 relative">
+              <FormGroup floating>
+                <div className="relative">
+                  <input
+                    placeholder=""
+                    id="password"
+                    name="password"
+                    type={passwordVisible ? "text" : "password"} // Toggle input type based on state
+                    required
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} // Update password state
+                    style={{ border: "none", borderRadius: "15px" }}
+                    className="peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black]"
+                  />
+                  <Label
+                    htmlFor="password"
+                    className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
+                  >
+                    Password
+                  </Label>
+                  {/* Eye icon to toggle password visibility */}
+                  <div
+                    onClick={togglePasswordVisibility}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                  >
+                    {passwordVisible ? (
+                      <FaEyeSlash size={20} />
+                    ) : (
+                      <FaEye size={20} />
+                    )}
                   </div>
-                </FormGroup>
-              </div>
+                </div>
+              </FormGroup>
             </div>
             {error && <p className="text-red-500">{error}</p>}{" "}
             {/* Display error message */}
@@ -160,7 +159,7 @@ function SignUp() {
               <input
                 type="checkbox"
                 id="terms"
-                className="h-6 w-6 text-black border-black rounded focus:ring-black"
+                className="h-6 w-6 text-black border border-black rounded-2xl focus:ring-black"
                 checked={termsChecked}
                 onChange={handleCheckboxChange}
                 required
