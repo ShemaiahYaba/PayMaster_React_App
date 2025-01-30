@@ -1,6 +1,14 @@
 import React, { useState } from "react";
+import Header from "../Header";
+import { useNavigate } from "react-router-dom";
 
-const Top = () => {
+const CardTopUp = () => {
+  const navigate = useNavigate();
+
+  const handleTopUp = () => {
+    navigate("/topup");
+  };
+
   const [fullName, setFullName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
@@ -14,71 +22,76 @@ const Top = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.amountHeader}>How much?</h1>
-      <div style={styles.amountInput}>
-        <input
-          type="text"
-          value={amount}
-          onChange={handleAmountChange}
-          placeholder="₦0"
-          style={styles.inputAmount}
-        />
+    <>
+      <div className="flex flex-col py-2 bg-black text-white -mb-20">
+        <Header title="Card Top Up" onBackClick={handleTopUp} />
       </div>
-
-      <div style={styles.formContainer}>
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>Full Name</label>
+      <div style={styles.container}>
+        <h1 style={styles.amountHeader}>How much?</h1>
+        <div style={styles.amountInput}>
           <input
             type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            placeholder="Wasiu John"
-            style={styles.inputField}
+            value={amount}
+            onChange={handleAmountChange}
+            placeholder="₦0"
+            style={styles.inputAmount}
           />
         </div>
 
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>Credit Card Number</label>
-          <input
-            type="text"
-            value={cardNumber}
-            onChange={(e) => setCardNumber(e.target.value)}
-            placeholder="1234 1234 1234 1234"
-            maxLength={19} // Assuming card format
-            style={styles.inputField}
-          />
-        </div>
-
-        <div style={styles.row}>
-          <div style={styles.inputGroupHalf}>
-            <label style={styles.label}>Exp Date</label>
+        <div style={styles.formContainer}>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>Full Name</label>
             <input
               type="text"
-              value={expiryDate}
-              onChange={(e) => setExpiryDate(e.target.value)}
-              placeholder="MM/YY"
-              maxLength={5}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              placeholder="Wasiu John"
               style={styles.inputField}
             />
           </div>
 
-          <div style={styles.inputGroupHalf}>
-            <label style={styles.label}>CVV</label>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>Credit Card Number</label>
             <input
               type="text"
-              value={cvv}
-              onChange={(e) => setCvv(e.target.value)}
-              placeholder="..."
-              maxLength={3}
+              value={cardNumber}
+              onChange={(e) => setCardNumber(e.target.value)}
+              placeholder="1234 1234 1234 1234"
+              maxLength={19} // Assuming card format
               style={styles.inputField}
             />
           </div>
-        </div>
 
-        <button style={styles.continueButton}>Continue</button>
+          <div style={styles.row}>
+            <div style={styles.inputGroupHalf}>
+              <label style={styles.label}>Exp Date</label>
+              <input
+                type="text"
+                value={expiryDate}
+                onChange={(e) => setExpiryDate(e.target.value)}
+                placeholder="MM/YY"
+                maxLength={5}
+                style={styles.inputField}
+              />
+            </div>
+
+            <div style={styles.inputGroupHalf}>
+              <label style={styles.label}>CVV</label>
+              <input
+                type="text"
+                value={cvv}
+                onChange={(e) => setCvv(e.target.value)}
+                placeholder="..."
+                maxLength={3}
+                style={styles.inputField}
+              />
+            </div>
+          </div>
+
+          <button style={styles.continueButton}>Continue</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -153,4 +166,4 @@ const styles: { [key: string]: CSSProperties } = {
   },
 };
 
-export default Top;
+export default CardTopUp;

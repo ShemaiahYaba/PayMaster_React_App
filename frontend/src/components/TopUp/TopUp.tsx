@@ -9,7 +9,7 @@ const TopUp = () => {
     navigate("/home");
   };
   const handleCard = () => {
-    navigate("/top");
+    navigate("/cardtopup");
 
     // Fetch balance from the API
     useEffect(() => {
@@ -27,7 +27,7 @@ const TopUp = () => {
     }, []); // Fetch balance only once when the component mounts
   };
   const handleTransfer = () => {
-    navigate("/transfer");
+    navigate("/transfertopup");
   };
 
   return (

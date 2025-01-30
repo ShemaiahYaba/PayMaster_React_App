@@ -3,6 +3,8 @@ import { FormGroup, Label } from "reactstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 import { useNavigate } from "react-router-dom";
 import Header from "../Header.tsx";
+import { auth } from "../../../firebase.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -43,11 +45,23 @@ function SignUp() {
     return true;
   };
 
-  const handleVerification = (event) => {
+  const handleVerification = async (event) => {
     event.preventDefault(); // Prevent default form submission
 
     if (validateInputs()) {
-      navigate("/Verify"); // Navigate if validation passes
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        // Signed in
+        const user = userCredential.user;
+        console.log("User signed up:", user);
+        navigate("/Verify"); // Navigate if validation passes
+      } catch (error) {
+        setError(error.message);
+      }
     }
   };
 

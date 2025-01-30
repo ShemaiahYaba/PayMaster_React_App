@@ -9,15 +9,16 @@ import Pin from "./components/Pin/Pin.tsx";
 import Retype from "./components/Pin/Retype.tsx";
 import Home from "./components/Home/Home.tsx";
 import History from "./components/History/History.tsx";
-import Top from "./components/TopUp/Top.tsx";
+import CardTopUp from "./components/TopUp/CardTopUp.tsx";
 import TopUp from "./components/TopUp/TopUp.tsx";
 import Profile from "./components/Profile/Profile.tsx";
 import ForgotPasswordEmailSent from "./components/LogIn/ForgotPasswordEmailSent.tsx";
 import SignUpSuccess from "./components/SignUp/SignUpSuccess.tsx";
-import TransferNew from "./components/Transfer/TransferNew.tsx";
+import Transfer from "./components/Transfer/Transfer.tsx";
 import Settings from "./components/Profile/Settings.tsx";
 import CurrencySelection from "./components/Profile/SettingsCurrency.tsx";
 import LanguageSelection from "./components/Profile/SettingsLanguage.tsx";
+import TransferTopUp from "./components/TopUp/TransferTopUp.tsx";
 import React from "react";
 
 function App() {
@@ -40,13 +41,14 @@ function App() {
           <Route path="/retype" element={<Retype />} />
           <Route path="/home" element={<Home />} />
           <Route path="/history" element={<History />} />
-          <Route path="/transfer" element={<TransferNew />} />
-          <Route path="/Top" element={<Top />} />
-          <Route path="/Topup" element={<TopUp />} />
+          <Route path="/transfer" element={<Transfer />} />
+          <Route path="/cardtopup" element={<CardTopUp />} />
+          <Route path="/topup" element={<TopUp />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/settingscurrency" element={<CurrencySelection />} />
           <Route path="/settingslanguage" element={<LanguageSelection />} />
+          <Route path="/transfertopup" element={<TransferTopUp />} />
         </Routes>
       </Router>
     </>
