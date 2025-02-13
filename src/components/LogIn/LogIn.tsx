@@ -3,6 +3,10 @@ import { FormGroup, Label } from "reactstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 import { useNavigate } from "react-router-dom";
 import Header from "../Header.tsx";
+import { auth, db } from "../../firebase.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import ToastMessage from "../ToastMessage.tsx";
 
 function LogIn() {
   const navigate = useNavigate();
@@ -43,11 +47,49 @@ function LogIn() {
     return true;
   };
 
-  const handleSetupAccount = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault(); // Prevent default form submission
 
     if (validateInputs()) {
-      navigate("/pin"); // Navigate if validation passes
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        // Signed in
+        const user = userCredential.user;
+
+        // Check if the user has a PIN set up
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists() && userDoc.data().pin) {
+          // User has a PIN, navigate to home page
+          ToastMessage({ message: "Login successful!", type: "success" });
+          navigate("/home");
+        } else {
+          // User does not have a PIN, navigate to PIN setup page
+          ToastMessage({
+            message: "Login successful! Please set up your PIN.",
+            type: "success",
+          });
+          navigate("/pin");
+        }
+      } catch (error) {
+        if (error.code === "auth/user-not-found") {
+          ToastMessage({
+            message: "User not found. Please sign up.",
+            type: "error",
+          });
+        } else if (error.code === "auth/wrong-password") {
+          ToastMessage({
+            message: "Incorrect password. Please try again.",
+            type: "error",
+          });
+        } else {
+          ToastMessage({ message: error.message, type: "error" });
+        }
+        setError(error.message);
+      }
     }
   };
 
@@ -67,7 +109,7 @@ function LogIn() {
             action="#"
             method="POST"
             className="space-y-6"
-            onSubmit={handleSetupAccount}
+            onSubmit={handleLogin}
           >
             <div>
               <div className="mt-2 relative">
@@ -135,17 +177,7 @@ function LogIn() {
             <div>
               <button
                 type="submit"
-                className="setup-button w-full"
-                style={{
-                  backgroundColor: "black",
-                  padding: "15px 130px", // Adjusted padding for a balanced look
-                  fontSize: "18px", // Adjusted font size for better fit
-                  border: "none",
-                  borderRadius: "18px",
-                  marginBottom: "2px",
-                  fontWeight: "bold",
-                  color: "white",
-                }}
+                className="setup-button w-full bg-black border-none rounded-2xl font-bold text-white mb-1 text-lg px-4 py-3"
               >
                 Login
               </button>
@@ -153,14 +185,7 @@ function LogIn() {
           </form>
 
           <p
-            className="font-semibold leading-6 text-black hover:text-gray-500"
-            style={{
-              color: "indigo",
-              textAlign: "center",
-              paddingTop: "30px",
-              paddingBottom: "10px",
-              cursor: "pointer",
-            }}
+            className="flex flex-row justify-center font-semibold leading-6 text-black hover:text-gray-500 pb-3 pt-7 items-center cursor-pointer"
             onClick={handleForgotPassword}
           >
             Forgot Password?

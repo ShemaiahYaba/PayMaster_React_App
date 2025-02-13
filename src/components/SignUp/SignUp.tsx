@@ -3,14 +3,17 @@ import { FormGroup, Label } from "reactstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 import { useNavigate } from "react-router-dom";
 import Header from "../Header.tsx";
-import { auth } from "../../../firebase.js";
+import { auth, db } from "../../firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import ToastMessage from "../ToastMessage.tsx";
 
 function SignUp() {
   const navigate = useNavigate();
 
   // State for input fields, validation error, and password visibility
-  const [name, setName] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -27,8 +30,12 @@ function SignUp() {
       setError("Please enter a valid email.");
       return false;
     }
-    if (name === "") {
-      setError("Name cannot be empty.");
+    if (fname === "") {
+      setError("First Name cannot be empty.");
+      return false;
+    }
+    if (lname === "") {
+      setError("Last name cannot be empty. ");
       return false;
     }
     // Validate password length
@@ -57,9 +64,26 @@ function SignUp() {
         );
         // Signed in
         const user = userCredential.user;
-        console.log("User signed up:", user);
+
+        // Add user details to Firestore
+        await setDoc(doc(db, "users", user.uid), {
+          fname: fname,
+          lname: lname,
+          email: email,
+          uid: user.uid,
+        });
+
+        ToastMessage({ message: "Sign up successful!", type: "success" });
         navigate("/Verify"); // Navigate if validation passes
       } catch (error) {
+        if (error.code === "auth/email-already-in-use") {
+          ToastMessage({
+            message: "Email is already in use. Please log in.",
+            type: "error",
+          });
+        } else {
+          ToastMessage({ message: error.message, type: "error" });
+        }
         setError(error.message);
       }
     }
@@ -99,8 +123,7 @@ function SignUp() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)} // Update email state
-                    style={{ border: "none", borderRadius: "15px" }}
-                    className="peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black]"
+                    className="border-none rounded-2xl peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black]"
                   />
                   <Label
                     htmlFor="email"
@@ -118,16 +141,35 @@ function SignUp() {
                     id="name"
                     placeholder=""
                     required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)} // Update Name state
-                    style={{ border: "none", borderRadius: "15px" }}
-                    className="peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black] placeholder-slate-400"
+                    value={fname}
+                    onChange={(e) => setFname(e.target.value)} // Update Name state
+                    className="border-none rounded-2xl peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black] placeholder-slate-400"
                   />
                   <Label
                     htmlFor="name"
                     className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
                   >
-                    Name
+                    First-name
+                  </Label>
+                </div>
+              </FormGroup>
+              <FormGroup floating>
+                <div>
+                  <input
+                    type="name"
+                    name="name"
+                    id="name"
+                    placeholder=""
+                    required
+                    value={lname}
+                    onChange={(e) => setLname(e.target.value)} // Update Name state
+                    className="border-none rounded-2xl peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black] placeholder-slate-400"
+                  />
+                  <Label
+                    htmlFor="name"
+                    className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
+                  >
+                    Last-name
                   </Label>
                 </div>
               </FormGroup>
@@ -144,8 +186,7 @@ function SignUp() {
                     autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)} // Update password state
-                    style={{ border: "none", borderRadius: "15px" }}
-                    className="peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black]"
+                    className="border-none rounded-2xl peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black]"
                   />
                   <Label
                     htmlFor="password"
@@ -202,17 +243,7 @@ function SignUp() {
             <div>
               <button
                 type="submit"
-                className="w-full"
-                style={{
-                  border: "none",
-                  borderRadius: "18px",
-                  backgroundColor: "black",
-                  padding: "15px 130px", // Adjusted padding for a balanced look
-                  fontSize: "18px", // Adjusted font size for better fit
-                  color: "white",
-                  marginBottom: "2px",
-                  fontWeight: "bold",
-                }}
+                className="w-full border-none rounded-2xl bg-black text-lg text-white font-semibold mb-1 px-4 py-3"
                 onClick={handleVerification}
               >
                 Sign Up
