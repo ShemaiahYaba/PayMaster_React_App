@@ -6,13 +6,13 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDDFPPDiZPPeFL0cB4oaHIZHIfSl6onkHA",
-  authDomain: "tapnpay-35c50.firebaseapp.com",
-  projectId: "tapnpay-35c50",
-  storageBucket: "tapnpay-35c50.firebasestorage.app",
-  messagingSenderId: "184241034445",
-  appId: "1:184241034445:web:c914faa34d0a0b7f284584",
-  measurementId: "G-KH35JRXGRK",
+  apiKey: "AIzaSyCFdn2cbepB6vXL5rH05xgaPGM_17MO9Xk",
+  authDomain: "tapnpay-4460d.firebaseapp.com",
+  projectId: "tapnpay-4460d",
+  storageBucket: "tapnpay-4460d.firebasestorage.app",
+  messagingSenderId: "901465971453",
+  appId: "1:901465971453:web:7d0533a5d9d11113c23c94",
+  measurementId: "G-X2VYXWP108",
 };
 
 // Initialize Firebase

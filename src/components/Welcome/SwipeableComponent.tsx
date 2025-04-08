@@ -7,6 +7,7 @@ import Img02 from "../../assets/Image_02.png";
 // Define the content array (image and text for each slide)
 const content = [
   {
+    id: "slide1",
     image: Img01,
     text: (
       <div className="relative isolate pt-14 lg:px-8">
@@ -24,6 +25,7 @@ const content = [
     ),
   },
   {
+    id: "slide2",
     image: Img02,
     text: (
       <div className="relative isolate pt-14 lg:px-8">

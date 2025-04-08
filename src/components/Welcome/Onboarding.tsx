@@ -18,7 +18,7 @@ function Onboarding() {
     setCurrentIndex(index);
   };
 
-  const slides = ["1", "2"]; // You can replace these with your slide identifiers or titles
+  const slides = ["slide1", "slide2"]; // You can replace these with your slide identifiers or titles
 
   return (
     <div className="min-h-screen flex flex-col justify-between items-center bg-white p-4 sm:p-6 md:p-8 lg:p-10">

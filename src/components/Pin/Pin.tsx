@@ -42,7 +42,7 @@ const Pin = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-[black] font-bold">Let&apos;s setup your PIN</h1>
+      <h1 className="text-[black] font-bold">Let&apos;s setup your pin</h1>
       <div className="flex justify-evenly items-center space-x-2 mb-3">
         {pin.map((digit, index) => (
           <input

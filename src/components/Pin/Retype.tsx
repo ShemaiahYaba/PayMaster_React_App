@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePin } from "../../contexts/PinContext.tsx"; // Correctly import usePin
+import { auth, db } from "../../firebase.js";
+import { doc, setDoc } from "firebase/firestore";
+import ToastMessage from "../ToastMessage.tsx";
 import "./pin.css";
 
 const Retype = () => {
@@ -32,44 +35,55 @@ const Retype = () => {
 
   // Validates the PIN when all digits are entered
   useEffect(() => {
-    if (pin.every((digit) => digit !== "")) {
+    const validateAndStorePin = async () => {
       if (pin.join("") === pin1) {
-        // If PINs match, navigate to the success page
-        setTimeout(() => {
-          navigate("/signupsuccess");
-        }, 500);
+        // If PINs match, store the PIN in Firestore
+        try {
+          const user = auth.currentUser;
+          if (user) {
+            await setDoc(
+              doc(db, "users", user.uid),
+              { pin: pin1 },
+              { merge: true }
+            );
+            ToastMessage({ message: "PIN set successfully!", type: "success" });
+            navigate("/signupsuccess");
+          } else {
+            ToastMessage({ message: "User not authenticated.", type: "error" });
+            navigate("/login");
+          }
+        } catch (error) {
+          ToastMessage({ message: error.message, type: "error" });
+        }
       } else {
-        alert("Pins do not match!");
+        ToastMessage({ message: "Pins do not match!", type: "error" });
         navigate("/pin");
       }
+    };
+
+    if (pin.every((digit) => digit !== "")) {
+      setTimeout(validateAndStorePin, 500);
     }
   }, [pin, pin1, navigate]);
 
-  // Navigate back to the first PIN page
-  const handleGoBack = () => {
-    navigate("/pin");
-  };
-
   return (
-    <>
-      <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-[black] font-bold">Confirm your PIN</h1>
-        <div className="flex justify-evenly items-center space-x-2 mb-3">
-          {pin.map((digit, index) => (
-            <input
-              key={index}
-              type="password"
-              value={digit}
-              onChange={(e) => handleInputChange(e, index)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
-              className="w-14 h-14 text-center rounded-xl border border-black"
-              ref={(el) => (inputRefs.current[index] = el)}
-              maxLength={1}
-            />
-          ))}
-        </div>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-[black] font-bold">Confirm your pin</h1>
+      <div className="flex justify-evenly items-center space-x-2 mb-3">
+        {pin.map((digit, index) => (
+          <input
+            key={index}
+            type="password"
+            value={digit}
+            onChange={(e) => handleInputChange(e, index)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            className="w-14 h-14 text-center rounded-xl border border-black"
+            ref={(el) => (inputRefs.current[index] = el)}
+            maxLength={1}
+          />
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 
