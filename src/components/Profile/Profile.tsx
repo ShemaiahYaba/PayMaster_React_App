@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../utils/ImageDeclaration.d.ts";
 import { useNavigate } from "react-router-dom";
 import { CgLogOut } from "react-icons/cg";
@@ -9,9 +9,27 @@ import Img09 from "../../assets/bookmark.png";
 import Img10 from "../../assets/pools.png";
 import Img11 from "../../assets/settings.png";
 import Img12 from "../../assets/pool.png";
+import { auth } from "../../utils/firebase";
+import { getUserNames } from "../../services/userService";
 
 const Profile = () => {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState({ firstName: "", lastName: "" });
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        setEmail(user.email || "");
+        const names = await getUserNames(user);
+        if (names) {
+          setUserName(names);
+        }
+      }
+    };
+    fetchUserName();
+  }, []);
 
   const handleGoBack = () => {
     navigate("/home");
@@ -43,9 +61,9 @@ const Profile = () => {
             />
           </div>
           <h2 className="text-xl font-semibold mt-4 bg-transparent">
-            Wasiu John
+            {userName.firstName} {userName.lastName}
           </h2>
-          <p className="text-gray-500 text-sm">wasijohn@gmail.com</p>
+          <p className="text-gray-500 text-sm">{email}</p>
         </div>
 
         {/* Statistics Section */}

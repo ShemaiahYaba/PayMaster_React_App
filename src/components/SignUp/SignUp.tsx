@@ -3,7 +3,7 @@ import { FormGroup, Label } from "reactstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 import { useNavigate } from "react-router-dom";
 import Header from "../Header.tsx";
-import { auth, db } from "../../firebase.js";
+import { auth, db } from "../../utils/firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 

@@ -9,15 +9,16 @@ import { useNavigate } from "react-router-dom";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { BiQrScan } from "react-icons/bi";
 import { useEffect, useState } from "react";
-import { auth, db } from "../../firebase.js"; // path to your firebase.ts
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { auth, db } from "../../utils/firebase.js";
+import { doc, onSnapshot } from "firebase/firestore";
 
 const Home: React.FC = () => {
   const [balance, setBalance] = useState<string>("0");
   const [accountNumber, setAccountNumber] = useState<string>("0");
+  const [userName, setUserName] = useState<string>("");
   const AccountNumber = `AJO-${accountNumber}`;
+  const navigate = useNavigate();
 
-  // useEffect with proper cleanup
   useEffect(() => {
     let unsubscribe: (() => void) | null = null;
 
@@ -34,16 +35,19 @@ const Home: React.FC = () => {
         const userId = user.uid;
         const userDocRef = doc(db, `users/${userId}`);
 
-        // Set up the real-time listener
         unsubscribe = onSnapshot(userDocRef, (snapshot) => {
           if (snapshot.exists()) {
             const data = snapshot.data();
             setBalance(data?.balance ?? "0");
             setAccountNumber(data?.accountNumber ?? "0");
+            setUserName(
+              [data?.fname, data?.lname].filter(Boolean).join(" ") || ""
+            );
           } else {
             alert("User data not found.");
             setBalance("0");
             setAccountNumber("0");
+            setUserName("");
           }
         });
       } catch (error) {
@@ -54,13 +58,13 @@ const Home: React.FC = () => {
 
     fetchDetails();
 
-    // Properly clean up the listener when the component unmounts
     return () => {
       if (unsubscribe) {
         unsubscribe();
       }
     };
-  }, []);
+  }, [navigate]);
+
   const formatCurrency = (amount: string | number) => {
     const num = typeof amount === "string" ? parseFloat(amount) : amount;
 
@@ -124,8 +128,6 @@ const Home: React.FC = () => {
     },
   ];
 
-  const navigate = useNavigate();
-
   const handleTopUp = () => {
     navigate("/Topup");
   };
@@ -144,7 +146,7 @@ const Home: React.FC = () => {
             className="mr-4 rounded-3xl w-12 h-12"
           />
           <div className="-mb-4">
-            <p className="font-bold leading-none -ml-3 mr-2">Wasiru</p>
+            <p className="font-bold leading-none -ml-3 mr-2">{userName}</p>
           </div>
         </div>
         <div className="ml-16">

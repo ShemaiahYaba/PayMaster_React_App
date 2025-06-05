@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePin } from "../../contexts/PinContext.tsx"; // Correctly import usePin
-import { auth, db } from "../../firebase.js";
+import { auth, db } from "../../utils/firebase.js";
 import { doc, setDoc } from "firebase/firestore";
 import "./pin.css";
 

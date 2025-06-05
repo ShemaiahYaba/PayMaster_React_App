@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./pin.css";
 import { usePin } from "../../contexts/PinContext.tsx";
-import { auth, db } from "../../firebase.js";
+import { auth, db } from "../../utils/firebase.js";
 import { doc, getDoc } from "firebase/firestore";
 import ToastMessage from "../ToastMessage.tsx";
 

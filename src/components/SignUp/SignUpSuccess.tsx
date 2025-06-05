@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDoc, doc, setDoc } from "firebase/firestore";
-import { auth, db } from "../../firebase.js";
+import { auth, db } from "../../utils/firebase.js";
 
 interface SuccessMessageProps {
   onContinue?: () => void;
