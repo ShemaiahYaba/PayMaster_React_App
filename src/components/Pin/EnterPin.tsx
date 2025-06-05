@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePin } from "../../contexts/PinContext.tsx"; // Correctly import usePin
-import { auth, db } from "../../firebase.js";
-import { doc, setDoc } from "firebase/firestore";
 import "./pin.css";
+import { usePin } from "../../contexts/PinContext.tsx";
+import { auth, db } from "../../firebase.js";
+import { doc, getDoc } from "firebase/firestore";
+import ToastMessage from "../ToastMessage.tsx";
 
-const Retype = () => {
+const EnterPin = () => {
   const [error, setError] = useState("");
-  const { pin1 } = usePin(); // PIN from the first page
+  const { setPin1 } = usePin(); // Context function to store the entered PIN
   const [pin, setPin] = useState(["", "", "", ""]); // 4-digit PIN stored as an array
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]); // References for the input fields
   const navigate = useNavigate();
@@ -33,45 +34,46 @@ const Retype = () => {
     }
   };
 
-  // Validates the PIN when all digits are entered
+  // Checks if all digits are entered and validates the PIN
   useEffect(() => {
-    const validateAndStorePin = async () => {
-      if (pin.join("") === pin1) {
-        // If PINs match, store the PIN in Firestore
-        try {
-          const user = auth.currentUser;
-          if (user) {
-            await setDoc(
-              doc(db, "users", user.uid),
-              { pin: pin1 },
-              { merge: true }
-            );
-            setError("PIN set successfully!");
-            alert("Pin set successfully"); // Show success message
-            navigate("/signupsuccess");
+    const validatePin = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          const storedPin = userDoc.data().pin;
+          if (storedPin === pin.join("")) {
+            setError("PIN validated successfully!");
+            alert("PIN validated successfully!"); // Show success message
+            navigate("/home"); // Navigate to the home page
           } else {
-            setError("User not authenticated.");
-            alert("User not authenticated");
-            navigate("/login");
+            setError("Invalid PIN. Please try again.");
+            alert("Invalid PIN. Please try again."); // Show error message
+            setPin1(""); // Clear the stored PIN in context
+            setPin(["", "", "", ""]); // Clear the PIN input
+            inputRefs.current[0]?.focus(); // Focus on the first input
           }
-        } catch (error) {
-          setError(error.message);
+        } else {
+          setError("User data not found.");
+          alert("User data not found."); // Show error message
+          setPin1(""); // Clear the stored PIN in context
         }
       } else {
-        setError("Pins do not match!");
-        alert("Pins do not match"); // Show error message
-        navigate("/pin");
+        setError("User not authenticated.");
+        alert("User not authenticated."); // Show error message
+        setPin1(""); // Clear the stored PIN in context
+        navigate("/login"); // Navigate to the login page
       }
     };
 
     if (pin.every((digit) => digit !== "")) {
-      setTimeout(validateAndStorePin, 500);
+      setTimeout(validatePin, 500);
     }
-  }, [pin, pin1, navigate]);
+  }, [pin, navigate]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-[black] font-bold">Confirm your pin</h1>
+      <h1 className="text-[black] font-bold">Enter your pin</h1>
       <div className="flex justify-evenly items-center space-x-2 mb-3">
         {pin.map((digit, index) => (
           <input
@@ -90,4 +92,4 @@ const Retype = () => {
   );
 };
 
-export default Retype;
+export default EnterPin;

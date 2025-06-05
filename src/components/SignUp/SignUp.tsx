@@ -6,9 +6,8 @@ import Header from "../Header.tsx";
 import { auth, db } from "../../firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import ToastMessage from "../ToastMessage.tsx";
 
-function SignUp() {
+const SignUp: React.FC = () => {
   const navigate = useNavigate();
 
   // State for input fields, validation error, and password visibility
@@ -16,8 +15,10 @@ function SignUp() {
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [termsChecked, setTermsChecked] = useState(false);
 
   const handleGoBack = () => {
@@ -35,12 +36,16 @@ function SignUp() {
       return false;
     }
     if (lname === "") {
-      setError("Last name cannot be empty. ");
+      setError("Last name cannot be empty.");
       return false;
     }
     // Validate password length
     if (password.length < 6) {
       setError("Password must be at least 6 characters long.");
+      return false;
+    }
+    if (password !== confirmpassword) {
+      setError("Passwords do not match.");
       return false;
     }
     if (!termsChecked) {
@@ -70,19 +75,17 @@ function SignUp() {
           fname: fname,
           lname: lname,
           email: email,
+          password: password,
           uid: user.uid,
         });
 
-        ToastMessage({ message: "Sign up successful!", type: "success" });
+        setError("Sign up successful!");
         navigate("/Verify"); // Navigate if validation passes
       } catch (error) {
         if (error.code === "auth/email-already-in-use") {
-          ToastMessage({
-            message: "Email is already in use. Please log in.",
-            type: "error",
-          });
+          setError("Email is already in use. Please log in.");
         } else {
-          ToastMessage({ message: error.message, type: "error" });
+          setError(error.message);
         }
         setError(error.message);
       }
@@ -91,6 +94,10 @@ function SignUp() {
 
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevState) => !prevState); // Toggle password visibility
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisible((prevState) => !prevState); // Toggle password visibility
   };
 
   const handleCheckboxChange = (event) => {
@@ -137,8 +144,8 @@ function SignUp() {
                 <div>
                   <input
                     type="name"
-                    name="name"
-                    id="name"
+                    name="fname"
+                    id="fname"
                     placeholder=""
                     required
                     value={fname}
@@ -146,7 +153,7 @@ function SignUp() {
                     className="border-none rounded-2xl peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black] placeholder-slate-400"
                   />
                   <Label
-                    htmlFor="name"
+                    htmlFor="fname"
                     className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
                   >
                     First-name
@@ -157,8 +164,8 @@ function SignUp() {
                 <div>
                   <input
                     type="name"
-                    name="name"
-                    id="name"
+                    name="lname"
+                    id="lname"
                     placeholder=""
                     required
                     value={lname}
@@ -166,7 +173,7 @@ function SignUp() {
                     className="border-none rounded-2xl peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black] placeholder-slate-400"
                   />
                   <Label
-                    htmlFor="name"
+                    htmlFor="lname"
                     className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
                   >
                     Last-name
@@ -200,6 +207,40 @@ function SignUp() {
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                   >
                     {passwordVisible ? (
+                      <FaEyeSlash size={20} />
+                    ) : (
+                      <FaEye size={20} />
+                    )}
+                  </div>
+                </div>
+              </FormGroup>
+            </div>
+            <div className="mt-2 relative">
+              <FormGroup floating>
+                <div className="relative">
+                  <input
+                    placeholder=""
+                    id="confirmpassword"
+                    name="confirmpassword"
+                    type={confirmPasswordVisible ? "text" : "password"} // Toggle input type based on state
+                    required
+                    autoComplete="current-password"
+                    value={confirmpassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)} // Update password state
+                    className="border-none rounded-2xl peer block w-full p-4 text-sm border focus:outline-none focus:ring-2 focus:ring-[black]"
+                  />
+                  <Label
+                    htmlFor="confirmpassword"
+                    className="absolute left-3 -top-1.5 px-1 -mt-1 text-xs font-medium text-gray-500 bg-white rounded-full"
+                  >
+                    Confirm Password
+                  </Label>
+                  {/* Eye icon to toggle password visibility */}
+                  <div
+                    onClick={toggleConfirmPasswordVisibility}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                  >
+                    {confirmPasswordVisible ? (
                       <FaEyeSlash size={20} />
                     ) : (
                       <FaEye size={20} />
@@ -251,7 +292,7 @@ function SignUp() {
             </div>
           </form>
 
-          <p className="text-center text-sm text-gray-500 p-3">
+          <p className="text-center text-gray-500 p-3">
             Already have an account?{" "}
             <a
               href="/login"
@@ -264,6 +305,6 @@ function SignUp() {
       </div>
     </>
   );
-}
+};
 
 export default SignUp;

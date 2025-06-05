@@ -29,7 +29,7 @@ function Onboarding() {
           setCurrentIndex={setCurrentIndex}
         />
 
-        <div className="-mt-20">
+        <div className="-mt-12">
           {/* Use the updated Breadcrumb component */}
           <Breadcrumb
             slides={slides}

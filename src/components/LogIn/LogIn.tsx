@@ -6,7 +6,6 @@ import Header from "../Header.tsx";
 import { auth, db } from "../../firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import ToastMessage from "../ToastMessage.tsx";
 
 function LogIn() {
   const navigate = useNavigate();
@@ -63,30 +62,21 @@ function LogIn() {
         // Check if the user has a PIN set up
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists() && userDoc.data().pin) {
-          // User has a PIN, navigate to home page
-          ToastMessage({ message: "Login successful!", type: "success" });
-          navigate("/home");
+          // User has a PIN, navigate to EnterPin page
+          setError("Login successful! Please enter your PIN.");
+          navigate("/enterpin");
         } else {
           // User does not have a PIN, navigate to PIN setup page
-          ToastMessage({
-            message: "Login successful! Please set up your PIN.",
-            type: "success",
-          });
+          setError("Login successful! Please set up your PIN.");
           navigate("/pin");
         }
       } catch (error) {
         if (error.code === "auth/user-not-found") {
-          ToastMessage({
-            message: "User not found. Please sign up.",
-            type: "error",
-          });
+          setError("User not found. Please sign up.");
         } else if (error.code === "auth/wrong-password") {
-          ToastMessage({
-            message: "Incorrect password. Please try again.",
-            type: "error",
-          });
+          setError("Incorrect password. Please try again.");
         } else {
-          ToastMessage({ message: error.message, type: "error" });
+          setError(error.message);
         }
         setError(error.message);
       }
@@ -185,13 +175,13 @@ function LogIn() {
           </form>
 
           <p
-            className="flex flex-row justify-center font-semibold leading-6 text-black hover:text-gray-500 pb-3 pt-7 items-center cursor-pointer"
+            className="flex flex-row justify-center font-semibold leading-6 text-black hover:text-gray-500 pt-7 items-center cursor-pointer"
             onClick={handleForgotPassword}
           >
             Forgot Password?
           </p>
 
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-gray-500">
             Don't have an account yet?{" "}
             <a
               href="/signup"

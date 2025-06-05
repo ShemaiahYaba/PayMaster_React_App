@@ -8,9 +8,70 @@ import NavBar from "./NavBar.tsx";
 import { useNavigate } from "react-router-dom";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { BiQrScan } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import { auth, db } from "../../firebase.js"; // path to your firebase.ts
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 
-const Home = () => {
-  // Sample transactions
+const Home: React.FC = () => {
+  const [balance, setBalance] = useState<string>("0");
+  const [accountNumber, setAccountNumber] = useState<string>("0");
+  const AccountNumber = `AJO-${accountNumber}`;
+
+  // useEffect with proper cleanup
+  useEffect(() => {
+    let unsubscribe: (() => void) | null = null;
+
+    const fetchDetails = async () => {
+      try {
+        const user = auth.currentUser;
+
+        if (!user) {
+          alert("No authenticated user found.");
+          navigate("/login");
+          return;
+        }
+
+        const userId = user.uid;
+        const userDocRef = doc(db, `users/${userId}`);
+
+        // Set up the real-time listener
+        unsubscribe = onSnapshot(userDocRef, (snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.data();
+            setBalance(data?.balance ?? "0");
+            setAccountNumber(data?.accountNumber ?? "0");
+          } else {
+            alert("User data not found.");
+            setBalance("0");
+            setAccountNumber("0");
+          }
+        });
+      } catch (error) {
+        console.error("Error fetching details:", error);
+        alert("An error occurred while fetching user details.");
+      }
+    };
+
+    fetchDetails();
+
+    // Properly clean up the listener when the component unmounts
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, []);
+  const formatCurrency = (amount: string | number) => {
+    const num = typeof amount === "string" ? parseFloat(amount) : amount;
+
+    if (isNaN(num)) return "₦0";
+
+    if (num >= 1_000_000_000) return `₦${(num / 1_000_000_000).toFixed(2)}B`;
+    if (num >= 1_000_000) return `₦${(num / 1_000_000).toFixed(2)}M`;
+    if (num >= 1_000) return `₦${(num / 1_000).toFixed(2)}K`;
+    return `₦${num.toFixed(2)}`;
+  };
+
   const transactions = [
     {
       id: 1,
@@ -96,25 +157,22 @@ const Home = () => {
 
       {/* Account Card */}
       <div className="">
-        <span className="font-semibold px-4 ">Default Acount</span>
         <div className="flex shadow-lg shadow-[#e6eef7] bg-[#1a1c1e] rounded-2xl p-6 text-white justify-between items-center m-3">
           <div className="text-base">
-            <div className="flex flex-row space-x-32">
-              <p>0987-6543-2810-7821</p>
-              <div className="">
-                <BiQrScan
-                  className="bg-white text-black rounded-md"
-                  size={40}
-                />
-              </div>
-            </div>
-            <div className="flex items-center space-x-1 my-2 ">
-              <h2 className="text-xl font-bold bg-transparent">
-                1,500,000.00{" "}
-              </h2>
-              <span className="">NGN</span>
-            </div>
             <p className="-mt-2">Smart Account</p>
+            <div className="flex flex-row items-center justify-between space-x-6">
+              <h5>{AccountNumber}</h5>
+
+              <BiQrScan
+                className="bg-white text-black rounded-md justify-end"
+                size={40}
+              />
+            </div>
+            <div className="pt-3 ">
+              <h2 className="text-xl -tracking-tighter bg-transparent">
+                {formatCurrency(balance)} NGN
+              </h2>
+            </div>
           </div>
         </div>
       </div>
