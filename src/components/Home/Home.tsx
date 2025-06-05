@@ -40,9 +40,7 @@ const Home: React.FC = () => {
             const data = snapshot.data();
             setBalance(data?.balance ?? "0");
             setAccountNumber(data?.accountNumber ?? "0");
-            setUserName(
-              [data?.fname, data?.lname].filter(Boolean).join(" ") || ""
-            );
+            setUserName([data?.fname].filter(Boolean).join(" ") || "");
           } else {
             alert("User data not found.");
             setBalance("0");
