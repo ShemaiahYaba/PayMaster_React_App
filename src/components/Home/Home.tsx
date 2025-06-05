@@ -144,7 +144,7 @@ const Home: React.FC = () => {
             className="mr-4 rounded-3xl w-12 h-12"
           />
           <div className="-mb-4">
-            <p className="font-bold leading-none -ml-3 mr-2">{userName}</p>
+            <p className="font-bold leading-none -ml-3 mr-auto">{userName}</p>
           </div>
         </div>
         <div className="ml-16">
